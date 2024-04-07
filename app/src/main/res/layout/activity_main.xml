@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context=".MainActivity">
+
+    <!--The Header (Start)-->
+
+    <TableLayout
+
+        android:stretchColumns="1"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ZALDIVAR'S COMPRADA"
+                android:textAlignment="center"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="37dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icons8_settings_500" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <!--The Header (End)-->
+
+    <!--The Dashboard Card (Start)-->
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:padding="1.5dp"
+            android:src="@drawable/baseline_account_circle_24"
+            android:layout_width="80dp"
+            android:layout_height="100dp"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:padding="10dp"
+            android:paddingRight="1dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:text="Roi Abrera"
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/txt"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:text="roiabrera14@gmail.com"
+                android:id="@+id/email_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TableLayout
+                android:elevation="10dp"
+                android:layout_marginBottom="10dp"
+                android:stretchColumns="0"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <TableRow tools:ignore="UselessParent">
+
+                    <TextView
+                        android:id="@+id/pending_dynamic"
+                        android:layout_width="32dp"
+                        android:text="3"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:id="@+id/transit_dynamic"
+                        android:layout_width="55dp"
+                        android:text="3"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:id="@+id/completed_dynamic"
+                        android:layout_width="42dp"
+                        android:text="3"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:id="@+id/cancelled_dynamic"
+                        android:layout_width="55dp"
+                        android:text="3"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:layout_width="42dp"
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                </TableRow>
+
+                <TableRow tools:ignore="UselessParent">
+
+                    <TextView
+                        android:textColor="@color/txt"
+                        android:layout_width="51dp"
+                        android:text="Pending"
+                        android:textAlignment="center"
+                        android:textSize="10sp"/>
+
+                    <TextView
+                        android:layout_width="61dp"
+                        android:text="On Delivery"
+                        android:textAlignment="center"
+                        android:textColor="@color/txt"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:textColor="@color/txt"
+                        android:layout_width="57dp"
+                        android:text="Completed"
+                        android:textAlignment="center"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:textColor="@color/txt"
+                        android:layout_width="58dp"
+                        android:text="Cancelled"
+                        android:textAlignment="center"
+                        android:textSize="10sp" />
+
+                </TableRow>
+            </TableLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--The Dashboard Card (End)-->
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="30dp"
+        android:textAllCaps="false"
+        android:background="@drawable/button"
+        android:text="Send Order"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"/>
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_marginTop="25dp"
+            android:id="@+id/tablayout"
+            app:tabIndicatorColor="@color/tapped_text"
+            app:tabTextColor="#A6008B"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="262dp">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pending" />
+
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/on_delivery" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/completed" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancelled" />
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    </androidx.viewpager.widget.ViewPager>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
