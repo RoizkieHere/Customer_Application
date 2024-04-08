@@ -45,6 +45,23 @@ public class Pending extends Fragment {
         StringRequest sr = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                String[] row = response.split("<br>");
+
+                int i = 0;
+
+                while(i<row.length){
+                    String[] data = response.split(";");
+                    i++;
+
+                    String ton = data[0];
+                    String date = data[1];
+
+
+
+
+
+                }
+
 
             }
         }, new Response.ErrorListener() {
