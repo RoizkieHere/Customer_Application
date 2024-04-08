@@ -6,6 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,9 +39,14 @@ public class MainActivity extends AppCompatActivity {
         vpAdapter.addFragment(new Pending(), "Pending");
         vpAdapter.addFragment(new Transit(), "On Delivery");
         vpAdapter.addFragment(new Completed(), "Completed");
+        RequestQueue requestQueue;
 
 
         viewPager.setAdapter(vpAdapter);
+
+
+
+
 
 
 
