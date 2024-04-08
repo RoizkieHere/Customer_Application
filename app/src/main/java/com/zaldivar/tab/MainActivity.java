@@ -2,11 +2,7 @@ package com.zaldivar.tab;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -30,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
         VPadapter vpAdapter = new VPadapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
-        vpAdapter.addFragment(new pending(), "Pending");
-        vpAdapter.addFragment(new transit(), "On Delivery");
-        vpAdapter.addFragment(new completed(), "Completed");
+        vpAdapter.addFragment(new Pending(), "Pending");
+        vpAdapter.addFragment(new Transit(), "On Delivery");
+        vpAdapter.addFragment(new Completed(), "Completed");
 
 
         viewPager.setAdapter(vpAdapter);

@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link transit#newInstance} factory method to
+ * Use the {@link Transit#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class transit extends Fragment {
+public class Transit extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class transit extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public transit() {
+    public Transit() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class transit extends Fragment {
      * @return A new instance of fragment transit.
      */
     // TODO: Rename and change types and number of parameters
-    public static transit newInstance(String param1, String param2) {
-        transit fragment = new transit();
+    public static Transit newInstance(String param1, String param2) {
+        Transit fragment = new Transit();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
