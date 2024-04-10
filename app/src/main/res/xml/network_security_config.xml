@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <domain-config>
+    <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">zaldivarservices.com</domain>
-        <trust-anchors>
-            <certificates src="@raw/my_ca"/>
-        </trust-anchors>
     </domain-config>
 </network-security-config>

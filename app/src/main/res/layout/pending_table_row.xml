@@ -11,6 +11,7 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/weight"
             android:text="1"
             android:textAlignment="center"
             android:layout_weight="1"
@@ -25,6 +26,7 @@
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/date"
             android:text="April 04, 2025"
             android:textAlignment="center"
             android:layout_weight="1"

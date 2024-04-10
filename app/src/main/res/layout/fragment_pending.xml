@@ -2,13 +2,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Pending">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_weight="1"
@@ -21,7 +23,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:textAlignment="center"
             android:layout_weight="1"
-            android:text="On Delivery"
+            android:text="Unit"
             android:textColor="@color/txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -33,6 +35,19 @@
             android:textColor="@color/txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/pending_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp">
+
+
+        <!---This is the container-->
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
