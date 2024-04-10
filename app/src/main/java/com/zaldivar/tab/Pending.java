@@ -49,9 +49,7 @@ public class Pending extends Fragment {
                     @Override
                     public void onResponse(String response) {
 
-                        Toast.makeText(getContext(), "qwwefwef", Toast.LENGTH_SHORT).show();
-
-                        LinearLayoutCompat pending_container = rootview.findViewById(R.id.pending_container);
+                        LinearLayoutCompat container1 = (LinearLayoutCompat) rootview.findViewById(R.id.pending_container);
 
                         LayoutInflater inflater = LayoutInflater.from(getContext());
 
@@ -59,7 +57,7 @@ public class Pending extends Fragment {
 
                         for (String data : row) {
 
-                            View newview = inflater.inflate(R.layout.pending_table_row, pending_container, false);
+                            View newview = inflater.inflate(R.layout.pending_table_row, container1, false);
 
                             TextView date = newview.findViewById(R.id.date);
                             TextView weight = newview.findViewById(R.id.weight);
