@@ -43,8 +43,6 @@ public class Pending extends Fragment {
         rootview =  inflater.inflate(R.layout.fragment_pending, container, false);
         return  rootview;
 
-
-
     }
 
     private void fetch_data(){
@@ -52,12 +50,10 @@ public class Pending extends Fragment {
         LinearLayoutCompat container = rootview.findViewById(R.id.pending_container) ;
         LayoutInflater inflater = LayoutInflater.from(getActivity());
 
-
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
 
                 String[] row = response.split("<br>");
 
@@ -76,10 +72,6 @@ public class Pending extends Fragment {
                     unit.setText("Ton");
 
                 }
-
-
-
-
             }
         }, new Response.ErrorListener() {
             @Override
