@@ -36,16 +36,20 @@ public class Pending extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        fetch_data();
+
         context = getContext();
         // Inflate the layout for this fragment
         rootview =  inflater.inflate(R.layout.fragment_pending, container, false);
         return  rootview;
 
+
+
     }
 
     private void fetch_data(){
 
-        LinearLayoutCompat container = (LinearLayoutCompat)rootview.findViewById(R.id.pending_container) ;
+        LinearLayoutCompat container = rootview.findViewById(R.id.pending_container) ;
         LayoutInflater inflater = LayoutInflater.from(getActivity());
 
 
@@ -70,8 +74,6 @@ public class Pending extends Fragment {
                     weight.setText(data[0]);
                     date.setText(data[1]);
                     unit.setText("Ton");
-
-
 
                 }
 
