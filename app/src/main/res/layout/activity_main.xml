@@ -62,12 +62,11 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:padding="1.5dp"
             android:src="@drawable/baseline_account_circle_24"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="100dp"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:padding="10dp"
-            android:paddingRight="1dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -82,88 +81,118 @@
                 android:textColor="@color/txt"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:text="roiabrera14@gmail.com"
                 android:id="@+id/email_address"
+                android:text="@string/roiabrera14_gmail_com"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <TableLayout
-                android:elevation="10dp"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:orientation="vertical"
                 android:layout_marginBottom="10dp"
-                android:stretchColumns="0"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TableRow tools:ignore="UselessParent">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/pending_dynamic"
-                        android:layout_width="32dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="3"
                         android:textAlignment="center"
                         android:textSize="25sp" />
 
                     <TextView
                         android:id="@+id/transit_dynamic"
-                        android:layout_width="55dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="3"
                         android:textAlignment="center"
                         android:textSize="25sp" />
 
                     <TextView
                         android:id="@+id/completed_dynamic"
-                        android:layout_width="42dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="3"
                         android:textAlignment="center"
                         android:textSize="25sp" />
 
                     <TextView
                         android:id="@+id/cancelled_dynamic"
-                        android:layout_width="55dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="3"
                         android:textAlignment="center"
                         android:textSize="25sp" />
 
-                    <TextView
-                        android:layout_width="42dp"
-                        android:textAlignment="center"
-                        android:textSize="25sp" />
 
-                </TableRow>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <TableRow tools:ignore="UselessParent">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:textColor="@color/txt"
-                        android:layout_width="51dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Pending"
                         android:textAlignment="center"
                         android:textSize="10sp"/>
 
                     <TextView
-                        android:layout_width="61dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="On Delivery"
                         android:textAlignment="center"
                         android:textColor="@color/txt"
                         android:textSize="10sp" />
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/txt"
-                        android:layout_width="57dp"
+                        android:layout_weight="1"
                         android:text="Completed"
                         android:textAlignment="center"
                         android:textSize="10sp" />
 
                     <TextView
                         android:textColor="@color/txt"
-                        android:layout_width="58dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Cancelled"
                         android:textAlignment="center"
                         android:textSize="10sp" />
 
-                </TableRow>
-            </TableLayout>
+
+
+
+
+
+
+
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
