@@ -2,114 +2,85 @@ package com.zaldivar.tab;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.Cache;
-import com.android.volley.Network;
+import androidx.fragment.app.Fragment;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class Pending extends Fragment {
 
-    Context context;
-    View rootview;
-    String url = "https://zaldivarservices.com/customer_app/pending.php";
+    private Context context;
+    private View rootView;
+    private String url = "https://zaldivarservices.com/customer_app/pending.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fetch_data();
-
+        rootView = inflater.inflate(R.layout.fragment_pending, container, false);
         context = getContext();
-        // Inflate the layout for this fragment
-        rootview =  inflater.inflate(R.layout.fragment_pending, container, false);
-        return  rootview;
-
+        fetch_data();
+        return rootView;
     }
 
-    private void fetch_data(){
-
-        LinearLayoutCompat container = rootview.findViewById(R.id.pending_container) ;
-        LayoutInflater inflater = LayoutInflater.from(getActivity());
+    private void fetch_data() {
+        LinearLayout container = (LinearLayout)rootView.findViewById(R.id.pending_container);
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest sr = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                if (response != null && !response.isEmpty()) {
+                    String[] row = response.split("<br>");
 
-                String[] row = response.split("<br>");
+                    for (String column : row) {
+                        String[] data = column.split(";");
 
-                for (String column : row){
+                        View newView = LayoutInflater.from(context).inflate(R.layout.pending_table_row, container, false);
 
-                    String[] data = column.split(";");
+                        TextView weight = newView.findViewById(R.id.weight);
+                        TextView date = newView.findViewById(R.id.date);
+                        TextView unit = newView.findViewById(R.id.unit);
 
-                    View new_view = inflater.inflate(R.layout.pending_table_row, container, false);
+                        weight.setText(data[0]);
+                        date.setText(data[1]);
+                        unit.setText("Ton");
 
-                    TextView weight = new_view.findViewById(R.id.weight);
-                    TextView date = new_view.findViewById(R.id.date);
-                    TextView unit = new_view.findViewById(R.id.unit);
-
-                    weight.setText(data[0]);
-                    date.setText(data[1]);
-                    unit.setText("Ton");
-
+                        container.addView(newView);
+                    }
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                // Handle error
             }
-        }){
+        }) {
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("user","Abrera.123");
-
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user", "Abrera.123");
                 return params;
             }
-
         };
         queue.add(sr);
     }
 
-
-
-
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        // Release resources here if needed
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
