@@ -53,7 +53,7 @@
     <!--The Dashboard Card (Start)-->
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:elevation="10dp"
+        android:elevation="5dp"
         android:background="@drawable/border"
         android:gravity="center"
         android:layout_width="match_parent"
@@ -210,16 +210,18 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"/>
 
-
+    <HorizontalScrollView
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+s
         <com.google.android.material.tabs.TabLayout
-            android:layout_marginTop="25dp"
             android:id="@+id/tablayout"
+            app:tabSelectedTextColor="@color/tapped_text"
             app:tabIndicatorColor="@color/tapped_text"
-            app:tabTextColor="#A6008B"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="262dp">
+            app:tabTextColor="@color/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -240,10 +242,20 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cancelled" />
+                android:text="Cancelled" />
+
 
 
         </com.google.android.material.tabs.TabLayout>
+
+
+
+
+
+    </HorizontalScrollView>
+
+
+
 
 
 

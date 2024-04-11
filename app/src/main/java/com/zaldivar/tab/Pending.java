@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -36,13 +37,13 @@ public class Pending extends Fragment {
     }
 
     private void fetch_data() {
-        LinearLayout container = (LinearLayout)rootView.findViewById(R.id.pending_container);
+        LinearLayoutCompat container = rootView.findViewById(R.id.pending_container);
 
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (response != null && !response.isEmpty()) {
+
                     String[] row = response.split("<br>");
 
                     for (String column : row) {
@@ -60,7 +61,6 @@ public class Pending extends Fragment {
 
                         container.addView(newView);
                     }
-                }
             }
         }, new Response.ErrorListener() {
             @Override

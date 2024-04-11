@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center_horizontal"
     android:orientation="vertical"
@@ -9,31 +10,28 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="5dp">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_weight="1"
             android:textAlignment="center"
             android:text="Quantity"
-            android:textColor="@color/txt"
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:textAlignment="center"
             android:layout_weight="1"
             android:text="Unit"
-            android:textColor="@color/txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:textAlignment="center"
-            android:layout_weight="1"
             android:text="Date"
-            android:textColor="@color/txt"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -46,7 +44,6 @@
         android:layout_marginBottom="2dp">
 
 
-        <!---This is the container-->
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -55,4 +52,4 @@
 
 
 
-</FrameLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

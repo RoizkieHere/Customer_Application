@@ -13,13 +13,15 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/weight"
             android:text="1"
+            android:textColor="#7C7C7C"
             android:textAlignment="center"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/unit"
+            android:textColor="#7C7C7C"
             android:text="Ton"
             android:textAlignment="center"
             android:layout_weight="1"
@@ -28,10 +30,11 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/date"
+            android:textColor="#7C7C7C"
+            android:layout_weight="1"
             android:text="April 04, 2025"
             android:textAlignment="center"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"/>
 
 
