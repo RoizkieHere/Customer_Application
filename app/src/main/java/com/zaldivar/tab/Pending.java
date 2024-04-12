@@ -25,7 +25,7 @@ public class Pending extends Fragment {
 
     private Context context;
     private View rootView;
-    private String url = "https://zaldivarservices.com/customer_app/pending.php";
+    private String url = "https://zaldivarservices.com/android_new/customer_app/pending_api/pending.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
