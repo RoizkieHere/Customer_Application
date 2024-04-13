@@ -25,7 +25,7 @@ public class Cancelled extends Fragment {
 
     private Context context;
     private View rootView;
-    private String url = "https://zaldivarservices.com/android_new/customer_app/cancelled/cancelled.php";
+    private String url = "https://zaldivarservices.com/android_new/customer_app/cancelled/cancelled.phpi";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
