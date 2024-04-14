@@ -107,9 +107,6 @@ public class Login extends Fragment {
 
                 }
 
-
-
-
             }
         }, new Response.ErrorListener() {
             @Override
