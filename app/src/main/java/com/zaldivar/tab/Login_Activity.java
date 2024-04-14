@@ -4,17 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.core.widget.TextViewCompat;
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,32 +26,27 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Login extends Fragment {
-
-    View rootView;
+public class Login_Activity extends AppCompatActivity {
     TextView error_msg;
-    Context context;
+
     Button login, sign_up;
     EditText username, password;
     String url = "Roi";
     SharedPreferences sharedPreferences;
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_pending, container, false);
-        context = getContext();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
         error_msg.setVisibility(View.GONE);
 
-        login = rootView.findViewById(R.id.login_button);
-        sign_up = rootView.findViewById(R.id.sign_up);
-        username = rootView.findViewById(R.id.username);
-        password = rootView.findViewById(R.id.password);
+        login = findViewById(R.id.login_button);
+        sign_up = findViewById(R.id.sign_up);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
 
-        error_msg = rootView.findViewById(R.id.error_message);
+        error_msg = findViewById(R.id.error_message);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,32 +61,32 @@ public class Login extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent sign_up = new Intent(context, Signup.class);
+                Intent sign_up = new Intent(Login_Activity.this, Signup.class);
                 startActivity(sign_up);
 
             }
         });
 
-        return rootView;
+
     }
 
-    private void validate_input(){
+    private void validate_input() {
 
         String usernameString = username.getText().toString();
         String passwordString = password.getText().toString();
 
 
-        RequestQueue queue = Volley.newRequestQueue(context);
+        RequestQueue queue = Volley.newRequestQueue(Login_Activity.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
 
-                if (response.equals("Reject")){
+                if (response.equals("Reject")) {
 
                     error_msg.setVisibility(View.VISIBLE);
 
-                } else if (response.equals("Not Existing")){
+                } else if (response.equals("Not Existing")) {
 
                     error_msg.setVisibility(View.VISIBLE);
                     error_msg.setText("Not existing. Please try again or Sign-up");
@@ -99,10 +94,10 @@ public class Login extends Fragment {
                 } else {
                     error_msg.setVisibility(View.GONE);
 
-                    SharedPreferences.Editor editor= sharedPreferences.edit();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("username", usernameString);
 
-                    Intent login =  new Intent(context, MainActivity.class);
+                    Intent login = new Intent(Login_Activity.this, MainActivity.class);
                     startActivity(login);
 
                 }
@@ -123,22 +118,5 @@ public class Login extends Fragment {
             }
         };
         queue.add(sr);
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
 }

@@ -25,7 +25,7 @@ public class ConfirmChanged extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getContext(), Login.class);
+                Intent intent = new Intent(getContext(), Login_Activity.class);
                 startActivity(intent);
 
             }

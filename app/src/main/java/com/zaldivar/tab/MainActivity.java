@@ -1,6 +1,8 @@
 package com.zaldivar.tab;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
     ImageView settings;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
 
                 if(item.getItemId() == R.id.logout) {
-                    // Handle settings action
+
+                    Intent intent = new Intent(MainActivity.this, Login_Activity.class);
+                    startActivity(intent);
+
                     return true;
                 } else if (item.getItemId() == R.id.change_password){
                     return  true;
