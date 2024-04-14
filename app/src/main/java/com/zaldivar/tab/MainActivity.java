@@ -1,8 +1,12 @@
 package com.zaldivar.tab;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tablayout);
         viewPager =  findViewById(R.id.viewpager);
 
+
         tabLayout.setupWithViewPager(viewPager);
 
         VPadapter vpAdapter = new VPadapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -40,10 +46,12 @@ public class MainActivity extends AppCompatActivity {
         vpAdapter.addFragment(new Transit(), "On Delivery");
         vpAdapter.addFragment(new Completed(), "Completed");
         vpAdapter.addFragment(new Completed(), "Cancelled");
-        RequestQueue requestQueue;
+
 
 
         viewPager.setAdapter(vpAdapter);
+
+
 
 
 

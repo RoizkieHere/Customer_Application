@@ -44,6 +44,13 @@ public class Pending extends Fragment {
             @Override
             public void onResponse(String response) {
 
+                if (response.isEmpty()){
+
+
+
+
+                } else {
+
                     String[] row = response.split("<br>");
 
                     for (String column : row) {
@@ -61,6 +68,7 @@ public class Pending extends Fragment {
 
                         container.addView(newView);
                     }
+                }
             }
         }, new Response.ErrorListener() {
             @Override

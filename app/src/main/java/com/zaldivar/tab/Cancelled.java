@@ -31,40 +31,42 @@ public class Cancelled extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_completed, container, false);
+        rootView = inflater.inflate(R.layout.fragment_cancelled, container, false);
         context = getContext();
         fetch_data();
         return rootView;
     }
 
     private void fetch_data() {
-        LinearLayoutCompat container = rootView.findViewById(R.id.completed_container);
+        LinearLayoutCompat container = rootView.findViewById(R.id.cancelled_container);
 
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                String[] row = response.split("<br>");
+                if (response.isEmpty()){
 
-                for (String column : row) {
-                    String[] data = column.split(";");
 
-                    View newView = LayoutInflater.from(context).inflate(R.layout.completed_table_row, container, false);
 
-                    TextView weight = newView.findViewById(R.id.weight);
-                    TextView date = newView.findViewById(R.id.date);
-                    TextView unit = newView.findViewById(R.id.unit);
-                    TextView pahenante = newView.findViewById(R.id.pahenante);
-                    TextView arrived = newView.findViewById(R.id.arrived);
+                } else {
 
-                    weight.setText(data[0]);
-                    date.setText(data[1]);
-                    unit.setText("Ton");
-                    pahenante.setText(data[2]);
-                    arrived.setText(data[3]);
+                    String[] row = response.split("<br>");
 
-                    container.addView(newView);
+                    for (String column : row) {
+                        String[] data = column.split(";");
+
+                        View newView = LayoutInflater.from(context).inflate(R.layout.completed_table_row, container, false);
+
+                        TextView weight = newView.findViewById(R.id.weight);
+                        TextView date = newView.findViewById(R.id.date);
+                        TextView unit = newView.findViewById(R.id.unit);
+                        TextView pahenante = newView.findViewById(R.id.pahenante);
+                        TextView arrived = newView.findViewById(R.id.arrived);
+
+
+                        container.addView(newView);
+                    }
                 }
             }
         }, new Response.ErrorListener() {

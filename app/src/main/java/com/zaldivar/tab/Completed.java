@@ -45,26 +45,36 @@ public class Completed extends Fragment {
             @Override
             public void onResponse(String response) {
 
-                String[] row = response.split("<br>");
+                if (response.isEmpty()){
 
-                for (String column : row) {
-                    String[] data = column.split(";");
 
-                    View newView = LayoutInflater.from(context).inflate(R.layout.completed_table_row, container, false);
 
-                    TextView weight = newView.findViewById(R.id.weight);
-                    TextView date = newView.findViewById(R.id.date);
-                    TextView unit = newView.findViewById(R.id.unit);
-                    TextView pahenante = newView.findViewById(R.id.pahenante);
-                    TextView arrived = newView.findViewById(R.id.arrived);
+                } else {
 
-                    weight.setText(data[0]);
-                    date.setText(data[1]);
-                    unit.setText("Ton");
-                    pahenante.setText(data[2]);
-                    arrived.setText(data[3]);
+                    String[] row = response.split("<br>");
 
-                    container.addView(newView);
+                    for (String column : row) {
+                        String[] data = column.split(";");
+
+                        View newView = LayoutInflater.from(context).inflate(R.layout.completed_table_row, container, false);
+
+                        TextView weight = newView.findViewById(R.id.weight);
+                        TextView date = newView.findViewById(R.id.date);
+                        TextView unit = newView.findViewById(R.id.unit);
+                        TextView pahenante = newView.findViewById(R.id.pahenante);
+                        TextView arrived = newView.findViewById(R.id.arrived);
+
+                        weight.setText(data[0]);
+                        date.setText(data[1]);
+                        unit.setText("Ton");
+                        pahenante.setText(data[2]);
+                        arrived.setText(data[3]);
+
+                        container.addView(newView);
+
+
+                    }
+
                 }
             }
         }, new Response.ErrorListener() {
