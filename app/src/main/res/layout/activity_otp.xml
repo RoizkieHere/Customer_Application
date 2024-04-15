@@ -62,12 +62,12 @@
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/otp"
             android:paddingStart="15dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/input_field_background"
             android:textSize="15sp"
             android:layout_marginTop="30dp"
-            android:id="@+id/otp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
@@ -76,8 +76,6 @@
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="191dp"
             tools:ignore="RtlSymmetry" />
-
-
 
         <androidx.appcompat.widget.AppCompatButton
             android:textSize="20sp"

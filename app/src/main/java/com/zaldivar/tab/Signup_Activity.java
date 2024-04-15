@@ -28,6 +28,8 @@ public class Signup_Activity extends AppCompatActivity {
 
     String url = "https://zaldivarservices.com/android_new/customer_app/account/send_otp.php";
 
+    String otp;
+
     EditText email_add;
 
 
@@ -47,18 +49,19 @@ public class Signup_Activity extends AppCompatActivity {
 
                 int random_num = 100000  + (int)(Math.random() * ((999999 - 100000) + 1));
 
-                String otp = Integer.toString(random_num);
+                otp = Integer.toString(random_num);
 
                 Intent to_otp = new Intent(Signup_Activity.this, Otp.class);
+                to_otp.putExtra("otp", otp);
                 startActivity(to_otp);
 
-                send_otp(otp);
+                send_otp();
             }
         });
 
     }
 
-    private void send_otp(String otp) {
+    private void send_otp() {
 
         String emailString = email_add.getText().toString();
 
