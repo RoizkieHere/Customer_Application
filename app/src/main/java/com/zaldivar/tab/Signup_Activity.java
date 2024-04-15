@@ -1,6 +1,7 @@
 package com.zaldivar.tab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -21,12 +22,11 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Signup_Activity extends AppCompatActivity {
 
-
-
-    String url = "Roi";
+    String url = "https://zaldivarservices.com/android_new/customer_app/account/send_otp.php";
 
     EditText email_add;
 
@@ -45,13 +45,20 @@ public class Signup_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                send_otp();
+                int random_num = 100000  + (int)(Math.random() * ((999999 - 100000) + 1));
+
+                String otp = Integer.toString(random_num);
+
+                Intent to_otp = new Intent(Signup_Activity.this, Otp.class);
+                startActivity(to_otp);
+
+                send_otp(otp);
             }
         });
 
     }
 
-    private void send_otp() {
+    private void send_otp(String otp) {
 
         String emailString = email_add.getText().toString();
 
@@ -71,7 +78,8 @@ public class Signup_Activity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("email", emailString);
+                params.put("receiver", emailString);
+                params.put("otp", otp);
                 return params;
             }
         };

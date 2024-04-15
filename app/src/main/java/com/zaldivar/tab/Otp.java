@@ -2,18 +2,18 @@ package com.zaldivar.tab;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-public class Otp extends Fragment {
+public class Otp extends AppCompatActivity {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_otp, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_otp);
+
     }
 }

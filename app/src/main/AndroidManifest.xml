@@ -16,8 +16,12 @@
         android:theme="@style/Theme.Tab"
         tools:targetApi="31">
         <activity
+            android:name=".Otp"
+            android:exported="false"
+            android:theme="@style/Theme.Tab" />
+        <activity
             android:name=".Signup_Activity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Login_Activity"
             android:exported="false" />
