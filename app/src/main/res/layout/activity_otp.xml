@@ -40,8 +40,8 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
         android:gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -63,10 +63,10 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:paddingStart="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/input_field_background"
             android:textSize="15sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/otp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -85,7 +85,9 @@
             android:textColor="@color/white"
             android:text="ENTER"
             android:background="@drawable/button"
-            android:layout_width="250dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
 
