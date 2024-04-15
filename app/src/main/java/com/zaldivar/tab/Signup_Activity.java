@@ -1,18 +1,16 @@
 package com.zaldivar.tab;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,25 +22,23 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Signup extends Fragment {
+public class Signup_Activity extends AppCompatActivity {
 
-    Context context;
-    View rootView;
+
 
     String url = "Roi";
 
     EditText email_add;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_signup, container, false);
-        context = getContext();
 
-        AppCompatButton sign_up = rootView.findViewById(R.id.sign_up);
-        email_add = rootView.findViewById(R.id.email_address);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signup);
+
+
+        AppCompatButton sign_up = findViewById(R.id.sign_up);
+        email_add = findViewById(R.id.email_address);
 
 
         sign_up.setOnClickListener(new View.OnClickListener() {
@@ -53,19 +49,16 @@ public class Signup extends Fragment {
             }
         });
 
-        return rootView;
-
     }
 
-    private void send_otp(){
+    private void send_otp() {
 
         String emailString = email_add.getText().toString();
 
-        RequestQueue queue = Volley.newRequestQueue(context);
+        RequestQueue queue = Volley.newRequestQueue(Signup_Activity.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
 
 
             }
@@ -84,22 +77,5 @@ public class Signup extends Fragment {
         };
         queue.add(sr);
 
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

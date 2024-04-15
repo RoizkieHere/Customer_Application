@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    tools:context=".Signup">
+    tools:context=".Signup_Activity">
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -86,7 +86,7 @@
             android:textColor="@color/white"
             android:text="SIGN UP"
             android:background="@drawable/button"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
 

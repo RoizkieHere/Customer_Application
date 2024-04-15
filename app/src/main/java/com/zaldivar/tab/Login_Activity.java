@@ -29,19 +29,42 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login_Activity extends AppCompatActivity {
+    //TextView error_msg;
+
+    Button login, sign_up;
+
+    EditText username, password;
+
     TextView error_msg;
 
-    AppCompatButton login, sign_up;
-    AppCompatEditText username, password;
+    Intent to_main;
+
+    String usernameString, passwordString;
+
+    public SharedPreferences sharedPreferences;
     String url = "https://zaldivarservices.com/android_new/customer_app/account/login.php";
-    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        error_msg.setVisibility(View.GONE);
+        sign_up = findViewById(R.id.sign_up);
+
+        error_msg = findViewById(R.id.error_message);
+
+        sign_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(Login_Activity.this, Signup_Activity.class));
+
+            }
+        });
+
+       error_msg.setVisibility(View.GONE);
+
+        to_main = new Intent(Login_Activity.this, MainActivity.class);
 
         login = findViewById(R.id.login_button);
         sign_up = findViewById(R.id.sign_up);
@@ -54,30 +77,22 @@ public class Login_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                validate_input();
+                usernameString = username.getText().toString();
+                passwordString = username.getText().toString();
+
+                if(usernameString.isEmpty() || passwordString.isEmpty()){
+                    error_msg.setVisibility(View.VISIBLE);
+                    error_msg.setText("Input fields are empty!");
+                } else {
+                    validate_input();
+                }
+
 
             }
         });
-
-        sign_up.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent sign_up = new Intent(Login_Activity.this, Signup.class);
-                startActivity(sign_up);
-
-            }
-        });
-
-
     }
 
     private void validate_input() {
-
-        String usernameString = username.getText().toString();
-        String passwordString = password.getText().toString();
-
-
         RequestQueue queue = Volley.newRequestQueue(Login_Activity.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -91,11 +106,10 @@ public class Login_Activity extends AppCompatActivity {
                 } else if (response.equals("Not Existing")) {
 
                     error_msg.setVisibility(View.VISIBLE);
-                    error_msg.setText("Not existing. Please try again or Sign-up");
+                    error_msg.setText("Not existing. Sign-up instead!");
 
                 } else {
                     error_msg.setVisibility(View.GONE);
-
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("username", usernameString);
 
@@ -120,5 +134,7 @@ public class Login_Activity extends AppCompatActivity {
             }
         };
         queue.add(sr);
+
     }
+
 }
