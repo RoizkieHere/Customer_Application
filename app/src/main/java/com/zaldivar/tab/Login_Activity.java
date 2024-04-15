@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -29,9 +31,9 @@ import java.util.Map;
 public class Login_Activity extends AppCompatActivity {
     TextView error_msg;
 
-    Button login, sign_up;
-    EditText username, password;
-    String url = "Roi";
+    AppCompatButton login, sign_up;
+    AppCompatEditText username, password;
+    String url = "https://zaldivarservices.com/android_new/customer_app/account/login.php";
     SharedPreferences sharedPreferences;
 
     @Override
