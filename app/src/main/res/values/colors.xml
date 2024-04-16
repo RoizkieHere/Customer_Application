@@ -4,7 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="txt">#F41FD2</color>
     <color name="gray">#d0d0e1</color>
+    <color name="gray2">#7C7C7C</color>
     <color name="tapped_text">#A6008B</color>
     <color name="red">#fc0b03</color>
+    <color name="gray3">#e0e0eb</color>
 
 </resources>

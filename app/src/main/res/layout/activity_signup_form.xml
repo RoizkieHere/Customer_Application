@@ -32,28 +32,13 @@
             android:layout_height="wrap_content"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <com.google.android.material.tabs.TabLayout
-        app:tabIndicatorColor="@color/tapped_text"
-        app:tabTextColor="@color/txt"
-        app:tabMode="fixed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="124dp">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Personal Information" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login Credential" />
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:overScrollMode="ifContentScrolls"
+        android:orientation="vertical"
+        android:id="@+id/container"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -62,6 +47,7 @@
 
 
 
-    </androidx.viewpager.widget.ViewPager>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

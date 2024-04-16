@@ -25,20 +25,9 @@ public class Otp extends AppCompatActivity {
         String otp_here = otp_editText.getText().toString();
 
         if(otp_here.equals(b.get("otp"))){
-            
+            Intent to_form = new Intent(Otp.this, SignupForm.class);
+            startActivity(to_form);
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
