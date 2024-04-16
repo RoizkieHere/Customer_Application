@@ -9,7 +9,8 @@
     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:textColorHint="@color/gray3"
+        android:id="@+id/firstname"
+        android:textColorHint="@color/hint"
         android:textColor="@color/gray2"
         android:hint="Firstname"
         android:inputType="text"
@@ -17,10 +18,11 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/input_field"
         android:layout_width="match_parent"
-        android:layout_height="60dp"/>
+        android:layout_height="50dp"/>
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:textColorHint="@color/gray3"
+        android:id="@+id/lastname"
+        android:textColorHint="@color/hint"
         android:textColor="@color/gray2"
         android:paddingLeft="10dp"
         android:background="@drawable/input_field"
@@ -28,11 +30,12 @@
         android:inputType="text"
         android:hint="Lastname"
         android:layout_width="match_parent"
-        android:layout_height="60dp"/>
+        android:layout_height="50dp"/>
 
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:textColorHint="@color/gray3"
+        android:id="@+id/phone_num"
+        android:textColorHint="@color/hint"
         android:textColor="@color/gray2"
         android:inputType="phone"
         android:paddingLeft="10dp"
@@ -40,10 +43,11 @@
         android:background="@drawable/input_field"
         android:hint="Phone No."
         android:layout_width="match_parent"
-        android:layout_height="60dp"/>
+        android:layout_height="50dp"/>
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:textColorHint="@color/gray3"
+        android:id="@+id/address"
+        android:textColorHint="@color/hint"
         android:textColor="@color/gray2"
         android:inputType="text"
         android:paddingLeft="10dp"
@@ -51,14 +55,13 @@
         android:background="@drawable/input_field"
         android:hint="Company Address"
         android:layout_width="match_parent"
-        android:layout_height="60dp"/>
+        android:layout_height="50dp"/>
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/next_button"
         android:textColor="@color/white"
         android:layout_gravity="center"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
         android:text="Next"
         android:layout_marginTop="35dp"
         android:background="@drawable/button"
