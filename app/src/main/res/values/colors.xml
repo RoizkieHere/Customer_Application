@@ -8,6 +8,6 @@
     <color name="tapped_text">#A6008B</color>
     <color name="red">#fc0b03</color>
     <color name="gray3">#e0e0eb</color>
-    <color name="hint">#b1b1cd</color>
+    <color name="hint">#999999</color>
 
 </resources>
