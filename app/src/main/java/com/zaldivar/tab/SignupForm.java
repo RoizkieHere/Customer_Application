@@ -2,6 +2,8 @@ package com.zaldivar.tab;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -41,6 +43,8 @@ public class SignupForm extends AppCompatActivity {
 
     public boolean username_exists;
 
+    public AppCompatTextView sign_up_err;
+
 
 
     @Override
@@ -73,12 +77,34 @@ public class SignupForm extends AppCompatActivity {
         username = login_credentials.findViewById(R.id.username);
         password = login_credentials.findViewById(R.id.password);
         password_confirm = login_credentials.findViewById(R.id.password_confirm);
-        AppCompatTextView sign_up_err = login_credentials.findViewById(R.id.sign_up_err);
+        sign_up_err = login_credentials.findViewById(R.id.sign_up_err);
 
         //Error message:
         AppCompatTextView pe_error_msg = personal_info.findViewById(R.id.error_msg);
 
         container.addView(personal_info);
+
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // this function is called before text is edited
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // this function is called when text is edited
+                check_username();
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // this function is called after text is edited
+            }
+        };
+
+        username.addTextChangedListener(textWatcher);
+
 
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,8 +115,6 @@ public class SignupForm extends AppCompatActivity {
                 lastname_string = lastname.getText().toString();
                 phone_string = phone_number.getText().toString();
                 address_string = address.getText().toString();
-
-
 
 
                 if(firstname_string.isEmpty() || lastname_string.isEmpty() || phone_string.isEmpty() || address_string.isEmpty()){
@@ -179,6 +203,12 @@ public class SignupForm extends AppCompatActivity {
                         password_confirm.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                     }
 
+                    if(username_exists == true){
+                        username.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                    } else {
+                        username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    }
+
                     if (!passwordString.equals(confirmString)){
                         sign_up_err.setVisibility(View.VISIBLE);
                         password.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
@@ -197,8 +227,6 @@ public class SignupForm extends AppCompatActivity {
                         password_confirm.setBackground(getResources().getDrawable(R.drawable.input_field, null));
 
                         signup();
-
-
                 }
 
             }
@@ -242,5 +270,40 @@ public class SignupForm extends AppCompatActivity {
         };
         queue.add(sr);
     }
+
+    private void check_username(){
+
+        String url = "https://zaldivarservices.com/android_new/customer_app/account/check_username.php";
+
+        RequestQueue queue = Volley.newRequestQueue(SignupForm.this);
+        StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                if(response.equals("0")){
+                    username_exists = true;
+                    sign_up_err.setVisibility(View.VISIBLE);
+                    sign_up_err.setText("Username exists. Please construct a unique username");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("username", usernameString);
+                return params;
+
+            }
+        };
+        queue.add(sr);
+
+    }
+
+
 
 }
