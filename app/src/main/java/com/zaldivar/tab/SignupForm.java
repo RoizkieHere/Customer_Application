@@ -39,6 +39,8 @@ public class SignupForm extends AppCompatActivity {
                 phone_string,
                 address_string;
 
+    public boolean username_exists;
+
 
 
     @Override
@@ -204,8 +206,9 @@ public class SignupForm extends AppCompatActivity {
 
     }
 
-    private void signup(){
 
+
+    private void signup(){
         String url = "https://zaldivarservices.com/android_new/customer_app/account/sign_up.php";
 
         RequestQueue queue = Volley.newRequestQueue(SignupForm.this);
@@ -234,22 +237,10 @@ public class SignupForm extends AppCompatActivity {
                 params.put("address", address_string);
                 params.put("password", passwordString);
                 return params;
+
             }
         };
         queue.add(sr);
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
 
 }
