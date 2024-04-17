@@ -1,5 +1,6 @@
 package com.zaldivar.tab;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -108,6 +109,7 @@ public class SignupForm extends AppCompatActivity {
 
 
         next_button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View v) {
 
@@ -173,6 +175,7 @@ public class SignupForm extends AppCompatActivity {
         });
 
         sign_up_button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View v) {
 
@@ -278,6 +281,7 @@ public class SignupForm extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(SignupForm.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onResponse(String response) {
 
