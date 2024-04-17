@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -42,26 +44,19 @@ public class SignupForm extends AppCompatActivity {
         address = personal_info.findViewById(R.id.address);
         phone_number = personal_info.findViewById(R.id.phone_num);
 
-        String firstname_string = firstname.getText().toString();
-        String lastname_string = lastname.getText().toString();
-        String phone_string = phone_number.getText().toString();
-        String address_string = address.getText().toString();
-
         //For login_credentials:
         AppCompatButton sign_up_button = login_credentials.findViewById(R.id.sign_up_button);
+        AppCompatButton back_button = login_credentials.findViewById(R.id.prev_button);
         EditText username, password, password_confirm;
         username = login_credentials.findViewById(R.id.username);
         password = login_credentials.findViewById(R.id.password);
         password_confirm = login_credentials.findViewById(R.id.password_confirm);
-        TextView sign_up_err = login_credentials.findViewById(R.id.sign_up_err);
+        AppCompatTextView sign_up_err = login_credentials.findViewById(R.id.sign_up_err);
 
-        String usernameString = username.getText().toString();
-        String passwordString = password.getText().toString();
-        String confirmString = password_confirm.getText().toString();
 
 
         //Error message:
-        TextView pe_error_msg = personal_info.findViewById(R.id.error_msg);
+        AppCompatTextView pe_error_msg = personal_info.findViewById(R.id.error_msg);
 
         container.addView(personal_info);
 
@@ -70,6 +65,10 @@ public class SignupForm extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                String firstname_string = firstname.getText().toString();
+                String lastname_string = lastname.getText().toString();
+                String phone_string = phone_number.getText().toString();
+                String address_string = address.getText().toString();
 
                 if(firstname_string.isEmpty() || lastname_string.isEmpty() || phone_string.isEmpty() || address_string.isEmpty()){
 
@@ -94,6 +93,13 @@ public class SignupForm extends AppCompatActivity {
                     }
                 } else {
                     pe_error_msg.setVisibility(View.GONE);
+                    firstname.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    lastname.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    address.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    phone_number.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+
+
+                    container.removeView(personal_info);
                     container.addView(login_credentials);
                 }
             }
@@ -102,6 +108,10 @@ public class SignupForm extends AppCompatActivity {
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String usernameString = username.getText().toString();
+                String passwordString = password.getText().toString();
+                String confirmString = password_confirm.getText().toString();
 
 
                 if(usernameString.isEmpty() || passwordString.isEmpty() || confirmString.isEmpty()){
@@ -117,15 +127,23 @@ public class SignupForm extends AppCompatActivity {
                         password_confirm.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
                     }
 
-                    
+                } else {
+                    sign_up_err.setVisibility(View.GONE);
+                    username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    password.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    password_confirm.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                 }
 
 
+            }
+        });
 
 
-
-
-
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                container.removeView(login_credentials);
+                container.addView(personal_info);
             }
         });
 

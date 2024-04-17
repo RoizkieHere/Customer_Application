@@ -68,8 +68,8 @@ public class Login_Activity extends AppCompatActivity {
 
         login = findViewById(R.id.login_button);
         sign_up = findViewById(R.id.sign_up);
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+        username = findViewById(R.id.login_username);
+        password = findViewById(R.id.login_password);
 
         error_msg = findViewById(R.id.error_message);
 
