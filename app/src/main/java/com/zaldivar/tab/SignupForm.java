@@ -93,7 +93,8 @@ public class SignupForm extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // this function is called when text is edited
-                check_username();
+                String check_it = username.getText().toString();
+                check_username(check_it, username);
 
             }
 
@@ -271,7 +272,7 @@ public class SignupForm extends AppCompatActivity {
         queue.add(sr);
     }
 
-    private void check_username(){
+    private void check_username(String check, EditText username){
 
         String url = "https://zaldivarservices.com/android_new/customer_app/account/check_username.php";
 
@@ -280,22 +281,27 @@ public class SignupForm extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                if(response.equals("0")){
+                if(response.equals("1")){
                     username_exists = true;
                     sign_up_err.setVisibility(View.VISIBLE);
+                    username.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));;
                     sign_up_err.setText("Username exists. Please construct a unique username");
+                } else {
+                    username_exists = false;
+                    sign_up_err.setVisibility(View.GONE);
+                    username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // Handle error
+
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("username", usernameString);
+                params.put("username", check);
                 return params;
 
             }
