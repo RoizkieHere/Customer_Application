@@ -21,11 +21,11 @@
         android:id="@+id/firstname"
         android:textColorHint="@color/hint"
         android:textColor="@color/gray2"
+        android:background="@drawable/input_field"
         android:hint="Firstname"
         android:inputType="text"
         android:paddingLeft="10dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/input_field"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
 

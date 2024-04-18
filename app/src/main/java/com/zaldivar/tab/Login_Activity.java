@@ -29,20 +29,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login_Activity extends AppCompatActivity {
-    //TextView error_msg;
 
-    Button login, sign_up;
-
-    EditText username, password;
-
-    TextView error_msg;
-
-    Intent to_main;
-
-    String usernameString, passwordString;
-
+    public Button login, sign_up;
+    public EditText username, password;
+    public TextView error_msg, forgot_password;
+    public Intent to_main;
+    public String usernameString, passwordString;
     public SharedPreferences sharedPreferences;
-    String url = "https://zaldivarservices.com/android_new/customer_app/account/login.php";
+    public String url = "https://zaldivarservices.com/android_new/customer_app/account/login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +44,7 @@ public class Login_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         sign_up = findViewById(R.id.sign_up);
+        forgot_password.findViewById(R.id.forgot_password);
 
         error_msg = findViewById(R.id.error_message);
 
@@ -58,6 +53,13 @@ public class Login_Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(Login_Activity.this, Signup_Activity.class));
+
+            }
+        });
+
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
@@ -86,7 +88,6 @@ public class Login_Activity extends AppCompatActivity {
                 } else {
                     validate_input();
                 }
-
 
             }
         });

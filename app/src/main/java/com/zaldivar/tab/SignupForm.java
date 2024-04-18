@@ -59,9 +59,6 @@ public class SignupForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_form);
 
-        String[] personal;
-        String[] login_credential;
-
 
         container = findViewById(R.id.container);
 
