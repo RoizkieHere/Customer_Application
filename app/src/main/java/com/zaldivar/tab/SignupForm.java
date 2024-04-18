@@ -1,6 +1,7 @@
 package com.zaldivar.tab;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -42,6 +43,11 @@ public class SignupForm extends AppCompatActivity {
                 phone_string,
                 address_string;
 
+
+    public View success, login_credentials, personal_info;
+
+    public LinearLayoutCompat container;
+
     public boolean username_exists;
 
     public AppCompatTextView sign_up_err;
@@ -57,10 +63,11 @@ public class SignupForm extends AppCompatActivity {
         String[] login_credential;
 
 
-        LinearLayoutCompat container = findViewById(R.id.container);
+        container = findViewById(R.id.container);
 
-        View personal_info = LayoutInflater.from(SignupForm.this).inflate(R.layout.personal_information, container, false);
-        View login_credentials = LayoutInflater.from(SignupForm.this).inflate(R.layout.login_credentials, container, false);
+        personal_info = LayoutInflater.from(SignupForm.this).inflate(R.layout.personal_information, container, false);
+        login_credentials = LayoutInflater.from(SignupForm.this).inflate(R.layout.login_credentials, container, false);
+        success = LayoutInflater.from(SignupForm.this).inflate(R.layout.success_message, container, false);
 
 
         //For personal info:
@@ -70,6 +77,7 @@ public class SignupForm extends AppCompatActivity {
         lastname = personal_info.findViewById(R.id.lastname);
         address = personal_info.findViewById(R.id.address);
         phone_number = personal_info.findViewById(R.id.phone_num);
+        AppCompatTextView pe_error_msg = personal_info.findViewById(R.id.error_msg);
 
         //For login_credentials:
         AppCompatButton sign_up_button = login_credentials.findViewById(R.id.sign_up_button);
@@ -80,10 +88,18 @@ public class SignupForm extends AppCompatActivity {
         password_confirm = login_credentials.findViewById(R.id.password_confirm);
         sign_up_err = login_credentials.findViewById(R.id.sign_up_err);
 
-        //Error message:
-        AppCompatTextView pe_error_msg = personal_info.findViewById(R.id.error_msg);
-
         container.addView(personal_info);
+
+        //Third View:
+        AppCompatButton to_login_page = success.findViewById(R.id.to_login_page);
+
+        to_login_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent to_login_page = new Intent(SignupForm.this, Login_Activity.class);
+                startActivity(to_login_page);
+            }
+        });
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -164,6 +180,8 @@ public class SignupForm extends AppCompatActivity {
                 }
             }
         });
+
+
 
 
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -249,7 +267,8 @@ public class SignupForm extends AppCompatActivity {
             public void onResponse(String response) {
 
                 if(response.equals("Success")){
-                    Toast.makeText(SignupForm.this, "Data has been successfully stored into the database", Toast.LENGTH_SHORT).show();
+                    container.removeView(login_credentials);
+                    container.addView(success);
                 }
 
             }
