@@ -84,11 +84,11 @@
             tools:ignore="RtlSymmetry" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/sign_up"
+            android:id="@+id/send_otp"
             android:textSize="20sp"
             android:layout_marginTop="20dp"
             android:textColor="@color/white"
-            android:text="SIGN UP"
+            android:text="SEND OTP"
             android:background="@drawable/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

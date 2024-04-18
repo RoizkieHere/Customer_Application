@@ -49,7 +49,7 @@ public class Signup_Activity extends AppCompatActivity {
 
         error = findViewById(R.id.error_message);
 
-        AppCompatButton sign_up = findViewById(R.id.sign_up);
+        AppCompatButton send_otp = findViewById(R.id.send_otp);
         email_add = findViewById(R.id.email_address);
 
         TextWatcher textWatcher = new TextWatcher() {
@@ -116,8 +116,8 @@ public class Signup_Activity extends AppCompatActivity {
                     email_exists = true;
                     error.setVisibility(View.VISIBLE);
                     email_add.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
-                    error.setText("Email exists. Recover your account instead!");
-                } else {
+                    error.setText("Email exists!");
+                } else if (response.equals("0")) {
                     email_exists = false;
                     error.setVisibility(View.GONE);
                     email_add.setBackground(getResources().getDrawable(R.drawable.input_field, null));
