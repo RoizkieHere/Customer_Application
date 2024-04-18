@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,8 +32,6 @@ import java.util.Map;
 import java.util.Random;
 
 public class Signup_Activity extends AppCompatActivity {
-
-    String url = "https://zaldivarservices.com/android_new/customer_app/account/send_otp.php";
 
     String otp;
 
@@ -75,25 +74,19 @@ public class Signup_Activity extends AppCompatActivity {
         email_add.addTextChangedListener(textWatcher);
 
 
-        sign_up.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("UseCompatLoadingForDrawables")
+        send_otp.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
-                if (email_exists = false){
-
+                if (email_exists == false){
                     error.setVisibility(View.GONE);
                     email_add.setBackground(getResources().getDrawable(R.drawable.input_field, null));
 
-                    int random_num = 100000  + (int)(Math.random() * ((999999 - 100000) + 1));
-
-                    otp = Integer.toString(random_num);
-
                     Intent to_otp = new Intent(Signup_Activity.this, Otp.class);
-                    to_otp.putExtra("otp", otp);
+                    to_otp.putExtra("email", email_add.getText().toString());
                     startActivity(to_otp);
 
-                    send_otp();
                 }
 
 
@@ -138,35 +131,6 @@ public class Signup_Activity extends AppCompatActivity {
             }
         };
         queue.add(sr);
-    }
-
-    private void send_otp() {
-
-        String emailString = email_add.getText().toString();
-
-        RequestQueue queue = Volley.newRequestQueue(Signup_Activity.this);
-        StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Handle error
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("receiver", emailString);
-                params.put("otp", otp);
-                return params;
-            }
-        };
-        queue.add(sr);
-
     }
 
 

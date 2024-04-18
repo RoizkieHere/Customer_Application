@@ -59,15 +59,26 @@
             android:textSize="13sp"
             android:hint="Please enter your 6-digit One-time Pin"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:id="@+id/error_message"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/red"
+            android:text="You can't proceed with any of these fields empty!"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/otp"
             android:paddingStart="15dp"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/gray2"
+            android:background="@drawable/input_field"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/input_field_background"
             android:textSize="15sp"
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
@@ -80,6 +91,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:textSize="20sp"
             android:layout_marginTop="20dp"
+            android:id="@+id/enter"
             android:textColor="@color/white"
             android:text="ENTER"
             android:background="@drawable/button"
