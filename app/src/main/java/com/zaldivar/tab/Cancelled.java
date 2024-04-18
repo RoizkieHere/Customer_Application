@@ -45,11 +45,7 @@ public class Cancelled extends Fragment {
             @Override
             public void onResponse(String response) {
 
-                if (response.isEmpty()){
-
-
-
-                } else {
+                if (!response.isEmpty()) {
 
                     String[] row = response.split("<br>");
 
