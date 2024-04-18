@@ -57,8 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/error_msg"
+        <TextView
+            android:id="@+id/error_message"
             android:visibility="gone"
             android:layout_marginBottom="10dp"
             android:textColor="@color/red"

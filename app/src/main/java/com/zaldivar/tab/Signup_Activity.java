@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -36,8 +38,7 @@ public class Signup_Activity extends AppCompatActivity {
 
     Boolean email_exists;
 
-    TextView err;
-
+    AppCompatTextView error;
     EditText email_add;
 
 
@@ -46,11 +47,10 @@ public class Signup_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        error = findViewById(R.id.error_message);
 
         AppCompatButton sign_up = findViewById(R.id.sign_up);
         email_add = findViewById(R.id.email_address);
-
-        err.findViewById(R.id.error_msg);
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -82,7 +82,7 @@ public class Signup_Activity extends AppCompatActivity {
 
                 if (email_exists = false){
 
-                    err.setVisibility(View.GONE);
+                    error.setVisibility(View.GONE);
                     email_add.setBackground(getResources().getDrawable(R.drawable.input_field, null));
 
                     int random_num = 100000  + (int)(Math.random() * ((999999 - 100000) + 1));
@@ -104,22 +104,22 @@ public class Signup_Activity extends AppCompatActivity {
 
     private void check_email(String check) {
 
-        String url = "https://zaldivarservices.com/android_new/customer_app/account/check_email.php";
+        String url1 = "https://zaldivarservices.com/android_new/customer_app/account/check_email.php";
 
         RequestQueue queue = Volley.newRequestQueue(Signup_Activity.this);
-        StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST, url1, new Response.Listener<String>() {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onResponse(String response) {
 
                 if (response.equals("1")) {
                     email_exists = true;
-                    err.setVisibility(View.VISIBLE);
+                    error.setVisibility(View.VISIBLE);
                     email_add.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
-                    err.setText("Email exists. Recover your account instead!");
+                    error.setText("Email exists. Recover your account instead!");
                 } else {
                     email_exists = false;
-                    err.setVisibility(View.GONE);
+                    error.setVisibility(View.GONE);
                     email_add.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                 }
             }
