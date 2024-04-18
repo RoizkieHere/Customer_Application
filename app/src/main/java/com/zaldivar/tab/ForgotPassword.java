@@ -1,8 +1,10 @@
 package com.zaldivar.tab;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class ForgotPassword extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,25 +34,29 @@ public class ForgotPassword extends AppCompatActivity {
         //VIEW: send_email:
         AppCompatButton next_button = send_email.findViewById(R.id.next_button);
         AppCompatTextView error_msg_email = send_email.findViewById(R.id.error_msg_email);
-        AppCompatEditText email = send_email.findViewById(R.id.email_address);
+        EditText email = send_email.findViewById(R.id.email_address);
 
 
         //VIEW: send_otp:
         AppCompatButton submit_button = send_otp.findViewById(R.id.submit_button);
         AppCompatTextView error_msg_otp = send_otp.findViewById(R.id.error_msg_otp);
-        AppCompatEditText otp= send_email.findViewById(R.id.otp);
+        AppCompatEditText otp= send_otp.findViewById(R.id.otp);
 
         next_button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View v) {
 
-                if ()
+                if (email.getText().toString().isEmpty()){
+                    error_msg_email.setVisibility(View.VISIBLE);
+                    email.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                } else {
+                    error_msg_email.setVisibility(View.GONE);
+                    email.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    container.removeView(send_email);
+                    container.addView(send_otp);
+                }
 
-
-
-
-                container.removeView(send_email);
-                container.addView(send_otp);
             }
         });
 
