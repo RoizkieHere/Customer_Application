@@ -45,7 +45,7 @@ public class Otp extends AppCompatActivity {
         //All about edittext
         EditText otp_editText = findViewById(R.id.otp);
         String otp_string_editText = otp_editText.getText().toString();
-        send_otp(otp_string_editText);
+        send_otp();
 
         AppCompatTextView error = findViewById(R.id.error_message);
         AppCompatButton enter = findViewById(R.id.enter);
@@ -71,7 +71,7 @@ public class Otp extends AppCompatActivity {
 
     }
 
-    private void send_otp(String otp) {
+    private void send_otp() {
 
         String url = "https://zaldivarservices.com/android_new/customer_app/account/send_otp.php";
 
