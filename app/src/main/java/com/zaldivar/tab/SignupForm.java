@@ -232,7 +232,7 @@ public class SignupForm extends AppCompatActivity {
                     }
 
 
-                    if (passwordString != confirmString){
+                    if (passwordString.equals(confirmString)){
                         sign_up_err.setVisibility(View.VISIBLE);
                         password.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
                         password_confirm.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
