@@ -34,8 +34,8 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -58,9 +58,11 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:paddingStart="15dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/input_field_background"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/gray2"
+            android:background="@drawable/input_field"
             android:textSize="15sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/email_address"
             android:layout_width="match_parent"
             android:layout_height="50dp"

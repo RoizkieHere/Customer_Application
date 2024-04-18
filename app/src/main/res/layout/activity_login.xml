@@ -24,7 +24,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_marginTop="35dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:paddingStart="15dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/input_field_background"
+            android:background="@drawable/input_field"
             android:textSize="15sp"
             android:layout_marginTop="20dp"
             android:id="@+id/login_username"
@@ -92,14 +92,18 @@
             android:ems="10"
             android:inputType="text"
             android:hint="Username"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/gray2"
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="191dp"
             tools:ignore="RtlSymmetry" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:paddingStart="15dp"
-            android:background="@drawable/input_field_background"
+            android:background="@drawable/input_field"
             android:layout_marginBottom="15dp"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/gray2"
             android:textSize="15sp"
             android:id="@+id/login_password"
             android:layout_width="match_parent"
