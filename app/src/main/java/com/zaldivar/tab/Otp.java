@@ -28,6 +28,7 @@ import java.util.Map;
 public class Otp extends AppCompatActivity {
 
     String email_from_act, otp_string;
+    String otp_string_editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class Otp extends AppCompatActivity {
 
         //All about edittext
         EditText otp_editText = findViewById(R.id.otp);
-        String otp_string_editText = otp_editText.getText().toString();
+
         send_otp();
 
         AppCompatTextView error = findViewById(R.id.error_message);
@@ -55,7 +56,9 @@ public class Otp extends AppCompatActivity {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View v) {
-                if (otp_string.equals(otp_string_editText)){
+                otp_string_editText = otp_editText.getText().toString();
+
+                if (otp_string_editText.equals(otp_string)){
                     error.setVisibility(View.GONE);
                     otp_editText.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                     Intent to_form = new Intent(Otp.this, SignupForm.class);

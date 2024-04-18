@@ -199,6 +199,7 @@ public class SignupForm extends AppCompatActivity {
                 confirmString = password_confirm.getText().toString();
 
 
+
                 if (usernameString.isEmpty() || passwordString.isEmpty() || confirmString.isEmpty()) {
 
                     sign_up_err.setVisibility(View.VISIBLE);
@@ -222,13 +223,16 @@ public class SignupForm extends AppCompatActivity {
                         password_confirm.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                     }
 
+                }  else {
+
                     if(username_exists == true){
                         username.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
                     } else {
                         username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                     }
 
-                    if (!passwordString.equals(confirmString)){
+
+                    if (passwordString != confirmString){
                         sign_up_err.setVisibility(View.VISIBLE);
                         password.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
                         password_confirm.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
@@ -239,14 +243,16 @@ public class SignupForm extends AppCompatActivity {
                         password_confirm.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                     }
 
-                }  else {
-                        sign_up_err.setVisibility(View.GONE);
-                        username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
-                        password.setBackground(getResources().getDrawable(R.drawable.input_field, null));
-                        password_confirm.setBackground(getResources().getDrawable(R.drawable.input_field, null));
 
-                        signup();
+                    sign_up_err.setVisibility(View.GONE);
+                    username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    password.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    password_confirm.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+
+                    signup();
                 }
+
+
 
             }
         });
