@@ -1,5 +1,6 @@
 package com.zaldivar.tab;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,25 +31,25 @@ import java.util.Map;
 
 public class Login_Activity extends AppCompatActivity {
 
-    public Button login, sign_up;
-    public EditText username, password;
-    public TextView error_msg, forgot_password;
-    public Intent to_main;
-    public String usernameString, passwordString;
-    public SharedPreferences sharedPreferences;
-    public String url = "https://zaldivarservices.com/android_new/customer_app/account/login.php";
+    Intent to_main;
+
+    TextView error_msg;
+    String usernameString, passwordString;
+
+    EditText username, password;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        sign_up = findViewById(R.id.sign_up);
-        forgot_password.findViewById(R.id.forgot_password);
+        AppCompatButton sign_up_me = findViewById(R.id.sign_up);
+        TextView forgot_password1 = findViewById(R.id.forgot_password1);
 
         error_msg = findViewById(R.id.error_message);
 
-        sign_up.setOnClickListener(new View.OnClickListener() {
+        sign_up_me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -57,7 +58,7 @@ public class Login_Activity extends AppCompatActivity {
             }
         });
 
-        forgot_password.setOnClickListener(new View.OnClickListener() {
+        forgot_password1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -68,24 +69,40 @@ public class Login_Activity extends AppCompatActivity {
 
         to_main = new Intent(Login_Activity.this, MainActivity.class);
 
-        login = findViewById(R.id.login_button);
-        sign_up = findViewById(R.id.sign_up);
+        AppCompatButton login = findViewById(R.id.login_button);
         username = findViewById(R.id.login_username);
         password = findViewById(R.id.login_password);
 
         error_msg = findViewById(R.id.error_message);
 
         login.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View v) {
 
                 usernameString = username.getText().toString();
-                passwordString = username.getText().toString();
+                passwordString = password.getText().toString();
 
                 if(usernameString.isEmpty() || passwordString.isEmpty()){
                     error_msg.setVisibility(View.VISIBLE);
                     error_msg.setText("Input fields are empty!");
+
+                    if(passwordString.isEmpty()){
+                        password.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                    } else {
+                        password.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    }
+
+                    if(usernameString.isEmpty()){
+                        username.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                    } else {
+                        username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    }
+
                 } else {
+                    error_msg.setVisibility(View.GONE);
+                    password.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                     validate_input();
                 }
 
@@ -94,8 +111,11 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     private void validate_input() {
+        String url = "https://zaldivarservices.com/android_new/customer_app/account/login.php";
+
         RequestQueue queue = Volley.newRequestQueue(Login_Activity.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onResponse(String response) {
 
@@ -103,16 +123,24 @@ public class Login_Activity extends AppCompatActivity {
                 if (response.equals("Reject")) {
 
                     error_msg.setVisibility(View.VISIBLE);
+                    password.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                    error_msg.setText("Wrong password.");
 
                 } else if (response.equals("Not Existing")) {
 
                     error_msg.setVisibility(View.VISIBLE);
+                    password.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                    username.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
                     error_msg.setText("Not existing. Sign-up instead!");
 
                 } else {
                     error_msg.setVisibility(View.GONE);
+                    SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
+                    password.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("username", usernameString);
+                    editor.apply();
 
                     Intent login = new Intent(Login_Activity.this, MainActivity.class);
                     startActivity(login);

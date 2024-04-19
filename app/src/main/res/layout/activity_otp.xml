@@ -40,8 +40,8 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"

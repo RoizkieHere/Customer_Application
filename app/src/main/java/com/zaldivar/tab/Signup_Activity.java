@@ -76,17 +76,26 @@ public class Signup_Activity extends AppCompatActivity {
 
         send_otp.setOnClickListener(new View.OnClickListener() {
 
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View v) {
 
-                if (email_exists == false){
-                    error.setVisibility(View.GONE);
-                    email_add.setBackground(getResources().getDrawable(R.drawable.input_field, null));
 
-                    Intent to_otp = new Intent(Signup_Activity.this, Otp.class);
-                    to_otp.putExtra("email", email_add.getText().toString());
-                    startActivity(to_otp);
 
+
+                if (email_add.getText().toString().isEmpty()) {
+                    error.setVisibility(View.VISIBLE);
+                    error.setText("Please fill out empty field!");
+                    email_add.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                } else {
+                    if (!email_exists) {
+                        error.setVisibility(View.GONE);
+                        email_add.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+
+                        Intent to_otp = new Intent(Signup_Activity.this, Otp.class);
+                        to_otp.putExtra("email", email_add.getText().toString());
+                        startActivity(to_otp);
+                    }
                 }
 
 
