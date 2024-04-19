@@ -2,10 +2,12 @@ package com.zaldivar.tab;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,14 +28,18 @@ import java.util.Map;
 
 public class Change extends AppCompatActivity {
 
-    Context context;
 
     TextView error_msg;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change);
+
+        SharedPreferences fetch_preference = getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
+        username = fetch_preference.getString("username", "");
+
 
         error_msg = findViewById(R.id.error_message);
 
@@ -63,13 +69,13 @@ public class Change extends AppCompatActivity {
 
         String url = "";
 
-        RequestQueue queue = Volley.newRequestQueue(context);
+        RequestQueue queue = Volley.newRequestQueue(Change.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 if(response.equals("Good")){
-                    Intent intent = new Intent(context, PasswordChanged.class);
+                    Intent intent = new Intent(Change.this, PasswordChanged.class);
                     startActivity(intent);
                 }
 
@@ -85,6 +91,7 @@ public class Change extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("new_password", new_password);
+                params.put("username", username);
                 return params;
             }
         };
