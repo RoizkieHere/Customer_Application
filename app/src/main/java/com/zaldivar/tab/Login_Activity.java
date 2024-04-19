@@ -61,7 +61,8 @@ public class Login_Activity extends AppCompatActivity {
         forgot_password1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent to_recovery_page = new Intent(Login_Activity.this, ForgotPassword.class);
+                startActivity(to_recovery_page);
             }
         });
 

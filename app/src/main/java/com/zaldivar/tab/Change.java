@@ -3,16 +3,16 @@ package com.zaldivar.tab;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,25 +24,22 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChangePassword extends Fragment {
+public class Change extends AppCompatActivity {
+
     Context context;
-    View rootView;
-    String url = "Roi";
 
     TextView error_msg;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_change_password, container, false);
-        context = getContext();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_change);
 
-        error_msg = rootView.findViewById(R.id.error_message);
+        error_msg = findViewById(R.id.error_message);
 
-        AppCompatButton enter = rootView.findViewById(R.id.enter);
-        EditText new_password = rootView.findViewById(R.id.new_password);
-        EditText confirm_password = rootView.findViewById(R.id.confirm_password);
+        AppCompatButton enter = findViewById(R.id.enter);
+        EditText new_password = findViewById(R.id.new_password);
+        EditText confirm_password = findViewById(R.id.confirm_password);
 
         String new_passwordSt = new_password.getText().toString();
         String confirm_passwordSt = confirm_password.getText().toString();
@@ -60,10 +57,11 @@ public class ChangePassword extends Fragment {
             }
         });
 
-        return  rootView;
     }
 
     private void change_password(String new_password){
+
+        String url = "";
 
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -71,7 +69,7 @@ public class ChangePassword extends Fragment {
             public void onResponse(String response) {
 
                 if(response.equals("Good")){
-                    Intent intent = new Intent(context, ConfirmChanged.class);
+                    Intent intent = new Intent(context, PasswordChanged.class);
                     startActivity(intent);
                 }
 
@@ -91,7 +89,5 @@ public class ChangePassword extends Fragment {
             }
         };
         queue.add(sr);
-
-
     }
 }

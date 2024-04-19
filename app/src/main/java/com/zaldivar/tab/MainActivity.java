@@ -70,9 +70,13 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 } else if (item.getItemId() == R.id.change_password){
+
+                    Intent to_forgot = new Intent(MainActivity.this, Change.class);
+                    startActivity(to_forgot);
+
                     return  true;
                 } else {
-                    // Add more cases for other menu items if needed
+
                     return false;
                 }
             }

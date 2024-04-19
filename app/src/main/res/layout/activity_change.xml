@@ -9,7 +9,7 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:overScrollMode="always"
-    tools:context=".ChangePassword">
+    tools:context=".Change">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_marginTop="35dp"
@@ -39,8 +39,8 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -73,9 +73,11 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:layout_marginTop="30dp"
             android:paddingStart="15dp"
-            android:background="@drawable/input_field_background"
             android:layout_marginBottom="15dp"
             android:textSize="15sp"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/gray2"
+            android:background="@drawable/input_field"
             android:id="@+id/new_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -88,7 +90,9 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:paddingStart="15dp"
-            android:background="@drawable/input_field_background"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/gray2"
+            android:background="@drawable/input_field"
             android:textSize="15sp"
             android:id="@+id/confirm_password"
             android:layout_width="match_parent"
