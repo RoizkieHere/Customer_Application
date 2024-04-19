@@ -200,7 +200,7 @@ public class SignupForm extends AppCompatActivity {
 
 
                 if (usernameString.isEmpty() || passwordString.isEmpty() || confirmString.isEmpty()
-                    || username_exists == true || passwordString.equals(confirmString)) {
+                    || username_exists == true || !passwordString.equals(confirmString)) {
 
                     sign_up_err.setVisibility(View.VISIBLE);
                     sign_up_err.setText("Please fill out empty field/s.");
@@ -229,7 +229,7 @@ public class SignupForm extends AppCompatActivity {
                         username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                     }
 
-                    if (passwordString.equals(confirmString)){
+                    if (!passwordString.equals(confirmString)){
                         sign_up_err.setVisibility(View.VISIBLE);
                         password.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
                         password_confirm.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
