@@ -62,6 +62,7 @@ public class Otp extends AppCompatActivity {
                     error.setVisibility(View.GONE);
                     otp_editText.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                     Intent to_form = new Intent(Otp.this, SignupForm.class);
+                    intent.putExtra("email_address", email_from_act);
                     startActivity(to_form);
                 } else {
                     otp_editText.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));

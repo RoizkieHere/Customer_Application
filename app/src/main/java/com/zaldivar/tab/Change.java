@@ -67,19 +67,17 @@ public class Change extends AppCompatActivity {
 
     private void change_password(String new_password){
 
-        String url = "";
+        String url = "https://zaldivarservices.com/android_new/customer_app/account/update_pass.php";
 
         RequestQueue queue = Volley.newRequestQueue(Change.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                if(response.equals("Good")){
+                if(response.equals("Success")){
                     Intent intent = new Intent(Change.this, PasswordChanged.class);
                     startActivity(intent);
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override

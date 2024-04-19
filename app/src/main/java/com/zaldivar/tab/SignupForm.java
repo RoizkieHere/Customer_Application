@@ -43,6 +43,8 @@ public class SignupForm extends AppCompatActivity {
                 phone_string,
                 address_string;
 
+    String email_address;
+
 
     public View success, login_credentials, personal_info;
 
@@ -58,6 +60,9 @@ public class SignupForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_form);
+
+        Intent intent = getIntent();
+        email_address = intent.getStringExtra("email_address");
 
 
         container = findViewById(R.id.container);
@@ -260,6 +265,7 @@ public class SignupForm extends AppCompatActivity {
 
 
     private void signup(){
+
         String url = "https://zaldivarservices.com/android_new/customer_app/account/sign_up.php";
 
         RequestQueue queue = Volley.newRequestQueue(SignupForm.this);
@@ -283,6 +289,7 @@ public class SignupForm extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("username", usernameString);
+                params.put("email", email_address);
                 params.put("firstname", firstname_string);
                 params.put("lastname", lastname_string);
                 params.put("phone_number", phone_string);

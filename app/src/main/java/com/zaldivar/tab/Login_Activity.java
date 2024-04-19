@@ -86,7 +86,7 @@ public class Login_Activity extends AppCompatActivity {
 
                 if(usernameString.isEmpty() || passwordString.isEmpty()){
                     error_msg.setVisibility(View.VISIBLE);
-                    error_msg.setText("Input fields are empty!");
+                    error_msg.setText("Please fill-out empty field/s!");
 
                     if(passwordString.isEmpty()){
                         password.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
