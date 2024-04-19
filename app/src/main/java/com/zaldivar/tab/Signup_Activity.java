@@ -3,6 +3,7 @@ package com.zaldivar.tab;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -91,6 +92,11 @@ public class Signup_Activity extends AppCompatActivity {
                     if (!email_exists) {
                         error.setVisibility(View.GONE);
                         email_add.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+
+                        /*SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("email_address", email_add.getText().toString());
+                        editor.apply(); */
 
                         Intent to_otp = new Intent(Signup_Activity.this, Otp.class);
                         to_otp.putExtra("email", email_add.getText().toString());

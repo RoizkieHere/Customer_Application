@@ -136,9 +136,11 @@ public class Login_Activity extends AppCompatActivity {
 
                 } else {
                     error_msg.setVisibility(View.GONE);
-                    SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
+
                     password.setBackground(getResources().getDrawable(R.drawable.input_field, null));
                     username.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("username", usernameString);
                     editor.apply();

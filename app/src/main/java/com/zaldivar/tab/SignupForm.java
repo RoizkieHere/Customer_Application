@@ -1,7 +1,9 @@
 package com.zaldivar.tab;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -54,6 +56,7 @@ public class SignupForm extends AppCompatActivity {
 
     public AppCompatTextView sign_up_err;
 
+    SharedPreferences fetch_preference;
 
 
     @Override
@@ -62,7 +65,7 @@ public class SignupForm extends AppCompatActivity {
         setContentView(R.layout.activity_signup_form);
 
         Intent intent = getIntent();
-        email_address = intent.getStringExtra("email_address");
+        email_address = intent.getStringExtra("email");
 
 
         container = findViewById(R.id.container);
@@ -274,6 +277,7 @@ public class SignupForm extends AppCompatActivity {
             public void onResponse(String response) {
 
                 if(response.equals("Success")){
+
                     container.removeView(login_credentials);
                     container.addView(success);
                 }
