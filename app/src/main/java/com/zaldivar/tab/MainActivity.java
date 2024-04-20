@@ -1,6 +1,7 @@
 package com.zaldivar.tab;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,8 +18,10 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    TabLayout tabLayout;
+    ViewPager viewPager;
+
+    String email_address, usernameString;
 
     ImageView settings;
 
@@ -26,6 +29,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
+
+        if(!sharedPreferences.contains("username")){
+            Intent supplier = new Intent(MainActivity.this, Login_Activity.class);
+            startActivity(supplier);
+        }
+
+
+        Intent intent = getIntent();
+        email_address = intent.getStringExtra("email");
+        usernameString = intent.getStringExtra("user");
 
 
         tabLayout = findViewById(R.id.tablayout);
