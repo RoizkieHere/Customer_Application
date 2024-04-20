@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
         if(!sharedPreferences.contains("username")){
             Intent supplier = new Intent(MainActivity.this, Login_Activity.class);
             startActivity(supplier);
