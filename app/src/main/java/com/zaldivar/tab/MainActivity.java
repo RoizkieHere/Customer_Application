@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     String email_address, usernameString;
 
+    SharedPreferences sharedPreferences;
+
     ImageView settings;
 
     @Override
@@ -30,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
         if(!sharedPreferences.contains("username")){
             Intent supplier = new Intent(MainActivity.this, Login_Activity.class);
             startActivity(supplier);
@@ -80,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if(item.getItemId() == R.id.logout) {
 
+                    // Clear values of sharedpreferences:
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.clear();
+                    editor.apply();
+
                     Intent intent = new Intent(MainActivity.this, Login_Activity.class);
                     startActivity(intent);
 
@@ -87,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.change_password){
 
                     Intent to_forgot = new Intent(MainActivity.this, Change.class);
+                    to_forgot.putExtra("username", usernameString);
                     startActivity(to_forgot);
 
                     return  true;

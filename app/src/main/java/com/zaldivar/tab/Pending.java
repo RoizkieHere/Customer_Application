@@ -44,12 +44,7 @@ public class Pending extends Fragment {
             @Override
             public void onResponse(String response) {
 
-                if (response.isEmpty()){
-
-
-
-
-                } else {
+                if (!response.isEmpty()){
 
                     String[] row = response.split("<br>");
 

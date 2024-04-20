@@ -39,6 +39,12 @@ public class ForgotPassword extends AppCompatActivity {
 
     AppCompatButton change_password;
 
+    EditText email;
+
+    LinearLayoutCompat container;
+
+    View send_email, send_otp;
+
 
 
     @Override
@@ -47,17 +53,19 @@ public class ForgotPassword extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password);
 
 
-        LinearLayoutCompat container = findViewById(R.id.container);
-        View send_email = LayoutInflater.from(ForgotPassword.this).inflate(R.layout.forgot_password_email, container, false);
-        View send_otp = LayoutInflater.from(ForgotPassword.this).inflate(R.layout.forgot_password_otp, container, false);
+        container = findViewById(R.id.container);
+        send_email = LayoutInflater.from(ForgotPassword.this).inflate(R.layout.forgot_password_email, container, false);
+        send_otp = LayoutInflater.from(ForgotPassword.this).inflate(R.layout.forgot_password_otp, container, false);
         View form = LayoutInflater.from(ForgotPassword.this).inflate(R.layout.forgot_password_form, container, false);
+
+
 
         container.addView(send_email);
 
         //VIEW: send_email:
         AppCompatButton next_button = send_email.findViewById(R.id.next_button);
         AppCompatTextView error_msg_email = send_email.findViewById(R.id.error_msg_email);
-        EditText email = send_email.findViewById(R.id.email_address);
+        email = send_email.findViewById(R.id.email_address);
 
 
         //VIEW: send_otp:
@@ -85,15 +93,14 @@ public class ForgotPassword extends AppCompatActivity {
                 } else {
                     error_msg_email.setVisibility(View.GONE);
                     email.setBackground(getResources().getDrawable(R.drawable.input_field, null));
-                    container.removeView(send_email);
 
-                    int random_num = 100000  + (int)(Math.random() * ((999999 - 100000) + 1));
-                    otpString = Integer.toString(random_num);
-                    container.addView(send_otp);
+                    check_email(email.getText().toString(), error_msg_email);
+
                 }
 
             }
         });
+
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("UseCompatLoadingForDrawables")
@@ -109,20 +116,18 @@ public class ForgotPassword extends AppCompatActivity {
                     error_msg_otp.setVisibility(View.GONE);
                     otp.setBackground(getResources().getDrawable(R.drawable.input_field, null));
 
-                    container.removeView(send_otp);
-                    container.addView(form);
-                }
+                    if (!otp.getText().toString().equals(otpString)) {
+                        error_msg_otp.setVisibility(View.VISIBLE);
+                        error_msg_otp.setText("Otp not matched. Make sure you've entered the right pin.");
+                        otp.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                    } else {
+                        error_msg_otp.setVisibility(View.GONE);
+                        otp.setBackground(getResources().getDrawable(R.drawable.input_field, null));
 
-                if (!otp.getText().toString().equals(otpString)) {
-                    error_msg_otp.setVisibility(View.VISIBLE);
-                    error_msg_otp.setText("Otp not matched. Make sure you've entered the right pin.");
-                    otp.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
-                } else {
-                    error_msg_otp.setVisibility(View.GONE);
-                    otp.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                        container.removeView(send_otp);
+                        container.addView(form);
+                    }
 
-                    container.removeView(send_otp);
-                    container.addView(form);
                 }
 
             }
@@ -132,15 +137,6 @@ public class ForgotPassword extends AppCompatActivity {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View v) {
-                if (!new_password.getText().toString().equals(new_password_confirm.getText().toString())){
-                    error_msg_form.setVisibility(View.VISIBLE);
-                    new_password_confirm.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
-                    error_msg_form.setText("Passwords don't match!");
-                } else {
-                    error_msg_form.setVisibility(View.GONE);
-                    new_password_confirm.setBackground(getResources().getDrawable(R.drawable.input_field, null));
-                    change_it();
-                }
 
                 if (new_password.getText().toString().isEmpty()){
                     error_msg_form.setVisibility(View.VISIBLE);
@@ -148,7 +144,16 @@ public class ForgotPassword extends AppCompatActivity {
                 } else {
                     error_msg_form.setVisibility(View.GONE);
                     new_password_confirm.setBackground(getResources().getDrawable(R.drawable.input_field, null));
-                    change_it();
+
+                    if (!new_password.getText().toString().equals(new_password_confirm.getText().toString())){
+                        error_msg_form.setVisibility(View.VISIBLE);
+                        new_password_confirm.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                        error_msg_form.setText("Passwords don't match!");
+                    } else {
+                        error_msg_form.setVisibility(View.GONE);
+                        new_password_confirm.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                        change_it();
+                    }
                 }
             }
         });
@@ -156,13 +161,18 @@ public class ForgotPassword extends AppCompatActivity {
 
     private void change_it(){
 
-        String url = "link";
+        String url = "https://zaldivarservices.com/android_new/customer_app/account/change_pass.php";
 
         RequestQueue queue = Volley.newRequestQueue(ForgotPassword.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
+                if(response.equals("Success")){
+                    Intent intent = new Intent(ForgotPassword.this, PasswordChanged.class);
+                    intent.putExtra("from", "1");
+                    startActivity(intent);
+                }
 
 
             }
@@ -175,11 +185,80 @@ public class ForgotPassword extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("user", "Abrera.123");
+                params.put("email", email.getText().toString());
                 return params;
             }
         };
         queue.add(sr);
 
+    }
+
+    private void check_email(String check, TextView error) {
+
+        String url1 = "https://zaldivarservices.com/android_new/customer_app/account/check_email.php";
+
+        RequestQueue queue = Volley.newRequestQueue(ForgotPassword.this);
+        StringRequest sr = new StringRequest(Request.Method.POST, url1, new Response.Listener<String>() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onResponse(String response) {
+
+                if (response.equals("1")) {
+                    error.setVisibility(View.VISIBLE);
+                    email.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                    error.setText("Email exists!");
+
+                } else if (response.equals("0")) {
+                    error.setVisibility(View.GONE);
+                    email.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+
+                    int random_num = 100000  + (int)(Math.random() * ((999999 - 100000) + 1));
+                    otpString = Integer.toString(random_num);
+
+
+                    String url1 = "https://zaldivarservices.com/android_new/customer_app/account/send_otp.php";
+
+                    RequestQueue queue = Volley.newRequestQueue(ForgotPassword.this);
+                    StringRequest sr = new StringRequest(Request.Method.POST, url1, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // Handle error
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> params = new HashMap<>();
+                            params.put("receiver", email.getText().toString());
+                            params.put("otp", otpString);
+                            return params;
+                        }
+                    };
+                    queue.add(sr);
+
+                    container.removeView(send_email);
+                    container.addView(send_otp);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", check);
+                return params;
+
+            }
+        };
+        queue.add(sr);
     }
 }

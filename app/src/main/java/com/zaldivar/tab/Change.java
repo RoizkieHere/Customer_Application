@@ -30,15 +30,11 @@ public class Change extends AppCompatActivity {
 
 
     TextView error_msg;
-    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change);
-
-        SharedPreferences fetch_preference = getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
-        username = fetch_preference.getString("username", "");
 
 
         error_msg = findViewById(R.id.error_message);
@@ -69,6 +65,9 @@ public class Change extends AppCompatActivity {
 
         String url = "https://zaldivarservices.com/android_new/customer_app/account/update_pass.php";
 
+        Intent intent = getIntent();
+        String this_username = intent.getStringExtra("username");
+
         RequestQueue queue = Volley.newRequestQueue(Change.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -76,6 +75,7 @@ public class Change extends AppCompatActivity {
 
                 if(response.equals("Success")){
                     Intent intent = new Intent(Change.this, PasswordChanged.class);
+                    intent.putExtra("from", "0");
                     startActivity(intent);
                 }
             }
@@ -89,7 +89,7 @@ public class Change extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("new_password", new_password);
-                params.put("username", username);
+                params.put("username", this_username);
                 return params;
             }
         };
