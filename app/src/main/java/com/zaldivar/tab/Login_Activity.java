@@ -142,15 +142,14 @@ public class Login_Activity extends AppCompatActivity {
 
                     SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("username", usernameString);
-                    editor.apply();
 
                     String[] username_and_email = response.split(";");
 
-                    Intent login = new Intent(Login_Activity.this, MainActivity.class);
-                    login.putExtra("email", username_and_email[0]);
-                    login.putExtra("user", username_and_email[1]);
+                    editor.putString("email", username_and_email[0]);
+                    editor.putString("user", username_and_email[1]);
+                    editor.apply();
 
+                    Intent login = new Intent(Login_Activity.this, MainActivity.class);
                     startActivity(login);
 
                 }

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -34,15 +35,20 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
 
-        if(!sharedPreferences.contains("username")){
+        if(!sharedPreferences.contains("user")){
             Intent supplier = new Intent(MainActivity.this, Login_Activity.class);
             startActivity(supplier);
         }
 
+        email_address = sharedPreferences.getString("email", "");
+        usernameString = sharedPreferences.getString("user", "");
 
-        Intent intent = getIntent();
-        email_address = intent.getStringExtra("email");
-        usernameString = intent.getStringExtra("user");
+        //Dashboard:
+        TextView username_txt = findViewById(R.id.username);
+        TextView email_add_txt = findViewById(R.id.email_address);
+
+        username_txt.setText(usernameString);
+        email_add_txt.setText(email_address);
 
 
         tabLayout = findViewById(R.id.tablayout);
