@@ -145,9 +145,11 @@ public class Login_Activity extends AppCompatActivity {
                     editor.putString("username", usernameString);
                     editor.apply();
 
+                    String[] username_and_email = response.split(";");
+
                     Intent login = new Intent(Login_Activity.this, MainActivity.class);
-                    login.putExtra("email", response);
-                    login.putExtra("user", usernameString);
+                    login.putExtra("email", username_and_email[0]);
+                    login.putExtra("user", username_and_email[1]);
 
                     startActivity(login);
 
