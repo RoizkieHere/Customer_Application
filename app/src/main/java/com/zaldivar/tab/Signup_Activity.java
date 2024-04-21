@@ -34,7 +34,7 @@ import java.util.Random;
 
 public class Signup_Activity extends AppCompatActivity {
 
-    String otp;
+    String otp, emailString;
 
     Boolean email_exists;
 
@@ -61,8 +61,7 @@ public class Signup_Activity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // this function is called when text is edited
-                String check_it = email_add.getText().toString();
-                check_email(check_it);
+                check_email();
 
             }
 
@@ -81,27 +80,12 @@ public class Signup_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-
                 if (email_add.getText().toString().isEmpty()) {
                     error.setVisibility(View.VISIBLE);
                     error.setText("Please fill out empty field!");
                     email_add.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
                 } else {
-                    if (!email_exists) {
-                        error.setVisibility(View.GONE);
-                        email_add.setBackground(getResources().getDrawable(R.drawable.input_field, null));
-
-                        /*SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email_address", email_add.getText().toString());
-                        editor.apply(); */
-
-                        Intent to_otp = new Intent(Signup_Activity.this, Otp.class);
-                        to_otp.putExtra("email", email_add.getText().toString());
-                        startActivity(to_otp);
-                    }
+                    send_otp();
                 }
 
 
@@ -110,7 +94,7 @@ public class Signup_Activity extends AppCompatActivity {
 
     }
 
-    private void check_email(String check) {
+    private void check_email() {
 
         String url1 = "https://zaldivarservices.com/android_new/customer_app/account/check_email.php";
 
@@ -119,6 +103,56 @@ public class Signup_Activity extends AppCompatActivity {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onResponse(String response) {
+
+                if (email_add.getText().toString().isEmpty()) {
+                    error.setVisibility(View.VISIBLE);
+                    error.setText("Please fill out empty field!");
+                    email_add.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                } else
+
+                    if (response.equals("1")) {
+                        email_exists = true;
+                        error.setVisibility(View.VISIBLE);
+                        email_add.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                        error.setText("Email exists!");
+                    } else if (response.equals("0")) {
+                        email_exists = false;
+                        error.setVisibility(View.GONE);
+                        email_add.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+                    }
+                }
+
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email_add.getText().toString());
+                return params;
+
+            }
+        };
+        queue.add(sr);
+    }
+
+    private void send_otp() {
+
+        String url1 = "https://zaldivarservices.com/android_new/customer_app/account/check_email.php";
+
+        RequestQueue queue = Volley.newRequestQueue(Signup_Activity.this);
+        StringRequest sr = new StringRequest(Request.Method.POST, url1, new Response.Listener<String>() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onResponse(String response) {
+
+                if (email_add.getText().toString().isEmpty()) {
+                    error.setVisibility(View.VISIBLE);
+                    error.setText("Please fill out empty field!");
+                    email_add.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                } else
 
                 if (response.equals("1")) {
                     email_exists = true;
@@ -129,18 +163,22 @@ public class Signup_Activity extends AppCompatActivity {
                     email_exists = false;
                     error.setVisibility(View.GONE);
                     email_add.setBackground(getResources().getDrawable(R.drawable.input_field, null));
+
+                    Intent to_otp = new Intent(Signup_Activity.this, Otp.class);
+                    to_otp.putExtra("email", email_add.getText().toString());
+                    startActivity(to_otp);
                 }
             }
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("email", check);
+                params.put("email", email_add.getText().toString());
                 return params;
 
             }
