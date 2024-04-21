@@ -204,12 +204,12 @@ public class ForgotPassword extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                if (response.equals("1")) {
+                if (response.equals("0")) {
                     error.setVisibility(View.VISIBLE);
                     email.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
                     error.setText("Email exists!");
 
-                } else if (response.equals("0")) {
+                } else if (response.equals("1")) {
                     error.setVisibility(View.GONE);
                     email.setBackground(getResources().getDrawable(R.drawable.input_field, null));
 
