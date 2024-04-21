@@ -186,6 +186,7 @@ public class ForgotPassword extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("email", email.getText().toString());
+                params.put("password", new_password.getText().toString());
                 return params;
             }
         };

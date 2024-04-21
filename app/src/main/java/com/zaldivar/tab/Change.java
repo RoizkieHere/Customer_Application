@@ -61,7 +61,7 @@ public class Change extends AppCompatActivity {
 
     }
 
-    private void change_password(String new_password){
+    private void change_password(String new_pw){
 
         String url = "https://zaldivarservices.com/android_new/customer_app/account/update_pass.php";
 
@@ -88,7 +88,7 @@ public class Change extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("new_password", new_password);
+                params.put("password", new_pw);
                 params.put("username", this_username);
                 return params;
             }
