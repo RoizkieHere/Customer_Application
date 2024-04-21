@@ -30,6 +30,7 @@ public class Change extends AppCompatActivity {
 
 
     TextView error_msg;
+    EditText new_password, confirm_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +41,15 @@ public class Change extends AppCompatActivity {
         error_msg = findViewById(R.id.error_message);
 
         AppCompatButton enter = findViewById(R.id.enter);
-        EditText new_password = findViewById(R.id.new_password);
-        EditText confirm_password = findViewById(R.id.confirm_password);
-
-        String new_passwordSt = new_password.getText().toString();
-        String confirm_passwordSt = confirm_password.getText().toString();
+        new_password = findViewById(R.id.new_password);
+        confirm_password = findViewById(R.id.confirm_password);
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(new_passwordSt.equals(confirm_passwordSt)){
-                    change_password(new_passwordSt);
+                if(new_password.getText().toString().equals(confirm_password.getText().toString())){
+                    change_password();
                 } else {
                     error_msg.setVisibility(View.VISIBLE);
                 }
@@ -61,7 +59,10 @@ public class Change extends AppCompatActivity {
 
     }
 
-    private void change_password(String new_pw){
+    private void change_password(){
+
+        SharedPreferences get = getSharedPreferences("this_preferences", MODE_PRIVATE);
+        String user = get.getString("user", "");
 
         String url = "https://zaldivarservices.com/android_new/customer_app/account/update_pass.php";
 
@@ -88,8 +89,8 @@ public class Change extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("password", new_pw);
-                params.put("username", this_username);
+                params.put("password", new_password.getText().toString());
+                params.put("username", user);
                 return params;
             }
         };
