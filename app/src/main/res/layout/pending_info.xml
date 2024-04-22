@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:background="@drawable/info_bg"
     android:padding="10dp"
+    android:layout_marginTop="15dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -13,27 +14,29 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:textColor="@color/gray2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reference No.: " />
+            android:text="Ref. No.: " />
 
         <TextView
-            android:layout_width="126dp"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/gray2"
+            android:id="@+id/reference_number"
+            android:layout_width="103dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="20201212122" />
+            android:text="20201212122"
+            android:textColor="@color/gray2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:textSize="16sp"
+            android:textAlignment="center"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:textColor="@color/gray2"
-            android:text="Via Bank transfer"
+            android:text="Via bank transfer"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -46,7 +49,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textColor="@color/gray2"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -54,22 +57,27 @@
             android:text="Ordered on: " />
 
         <TextView
-            android:layout_width="149dp"
+            android:id="@+id/order_date"
+            android:layout_width="88dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="24/04/2024"
             android:textColor="@color/gray2"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
+
         <TextView
+            android:id="@+id/quantity"
+            android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="10000 kilogram/s"
             android:textColor="@color/gray2"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
+
 
     </LinearLayout>
 
@@ -86,7 +94,7 @@
             android:text="Status: " />
 
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="86dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Pending"
@@ -94,15 +102,14 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/price"
             android:textColor="@color/gray2"
             android:textStyle="bold"
+            android:textAlignment="center"
             android:text="1,0000 pesos"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
-
-
 
 
     </LinearLayout>

@@ -1,6 +1,7 @@
 package com.zaldivar.tab;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,12 +21,13 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Pending extends Fragment {
 
     private Context context;
     private View rootView;
-    private String url = "https://zaldivarservices.com/android_new/customer_app/pending_api/pending.php";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,10 +41,16 @@ public class Pending extends Fragment {
     private void fetch_data() {
         LinearLayoutCompat container = rootView.findViewById(R.id.pending_container);
 
+        String url = "https://zaldivarservices.com/android_new/customer_app/pending_api/pending.php";
+
         RequestQueue queue = Volley.newRequestQueue(context);
+
+        SharedPreferences get_username = requireContext().getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
+        String user = get_username.getString("user", "");
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
 
                 if (!response.isEmpty()){
 
@@ -51,15 +59,18 @@ public class Pending extends Fragment {
                     for (String column : row) {
                         String[] data = column.split(";");
 
-                        View newView = LayoutInflater.from(context).inflate(R.layout.pending_table_row, container, false);
+                        View newView = LayoutInflater.from(context).inflate(R.layout.pending_info, container, false);
 
-                        TextView weight = newView.findViewById(R.id.weight);
-                        TextView date = newView.findViewById(R.id.date);
-                        TextView unit = newView.findViewById(R.id.unit);
+                        TextView reference_number, order_date, quantity, price;
+                        reference_number = newView.findViewById(R.id.reference_number);
+                        order_date = newView.findViewById(R.id.order_date);
+                        quantity = newView.findViewById(R.id.quantity);
+                        price = newView.findViewById(R.id. price);
 
-                        weight.setText(data[0]);
-                        date.setText(data[1]);
-                        unit.setText("Ton");
+                        reference_number.setText(data[0]);
+                        order_date.setText(data[1]);
+                        quantity.setText(data[2]);
+                        price.setText(data[3]);
 
                         container.addView(newView);
                     }
@@ -74,7 +85,7 @@ public class Pending extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("user", "Abrera.123");
+                params.put("user", user);
                 return params;
             }
         };
