@@ -38,6 +38,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/pending_container"
+        android:background="@color/gray2"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
