@@ -9,34 +9,6 @@
     tools:context=".Pending">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:text="Quantity"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:textAlignment="center"
-            android:layout_weight="1"
-            android:text="Unit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:textAlignment="center"
-            android:text="Date"
-            android:layout_weight="1"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"/>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/pending_container"
         android:background="@color/gray2"
         android:orientation="vertical"
