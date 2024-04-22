@@ -6,22 +6,32 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/gray2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reference No.: " />
 
         <TextView
             android:layout_width="126dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/gray2"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="20201212122" />
 
         <TextView
-            android:text="To be paid via Bank transfer"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/gray2"
+            android:text="Via Bank transfer"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -29,42 +39,65 @@
     </LinearLayout>
 
     <LinearLayout
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            android:textSize="15sp"
+            android:textColor="@color/gray2"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Ordered on: " />
 
         <TextView
-            android:layout_width="154dp"
+            android:layout_width="149dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="24/04/2024" />
+            android:text="24/04/2024"
+            android:textColor="@color/gray2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:text="1000 kilograms"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="10000 kilogram/s"
+            android:textColor="@color/gray2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            android:textColor="@color/gray2"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Status: " />
 
         <TextView
-            android:layout_width="173dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Pending" />
+            android:text="Pending"
+            android:textColor="@color/gray2"
+            android:textStyle="bold" />
+
+        <TextView
+            android:textColor="@color/gray2"
+            android:textStyle="bold"
+            android:text="1,0000 pesos"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 
 
