@@ -76,7 +76,6 @@ public class Completed extends Fragment {
 
                         container.addView(newView);
 
-
                     }
 
                 }
