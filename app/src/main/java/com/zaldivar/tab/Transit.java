@@ -1,6 +1,7 @@
 package com.zaldivar.tab;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -40,33 +41,37 @@ public class Transit extends Fragment {
     private void fetch_data() {
         LinearLayoutCompat container = rootView.findViewById(R.id.transit_container);
 
+        SharedPreferences get_username = requireContext().getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
+        String user = get_username.getString("user", "");
+
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                if(response.isEmpty()){
+                if(!response.isEmpty()){
 
-
-                } else {
                     String[] row = response.split("<br>");
 
                     for (String column : row) {
                         String[] data = column.split(";");
 
-                        View newView = LayoutInflater.from(context).inflate(R.layout.transit_table_row, container, false);
+                        View newView = LayoutInflater.from(context).inflate(R.layout.info_transit, container, false);
 
-                        TextView weight = newView.findViewById(R.id.weight);
-                        TextView date = newView.findViewById(R.id.date);
-                        TextView unit = newView.findViewById(R.id.unit);
-                        TextView pahenante = newView.findViewById(R.id.pahenante);
-                        TextView status = newView.findViewById(R.id.status);
+                        TextView reference_number, order_date, quantity, price, pahenante, status;
+                        reference_number = newView.findViewById(R.id.reference_number);
+                        order_date = newView.findViewById(R.id.order_date);
+                        quantity = newView.findViewById(R.id.quantity);
+                        price = newView.findViewById(R.id. price);
+                        pahenante = newView.findViewById(R.id.pahenante);
+                        status = newView.findViewById(R.id.status);
 
-                        weight.setText(data[0]);
-                        date.setText(data[1]);
-                        unit.setText("Ton");
-                        pahenante.setText(data[2]);
-                        status.setText(data[3]);
+                        reference_number.setText(data[0]);
+                        order_date.setText(data[1]);
+                        quantity.setText(data[2]);
+                        price.setText(data[3]);
+                        pahenante.setText(data[4]);
+                        status.setText(data[5]);
 
                         container.addView(newView);
                     }
@@ -81,7 +86,7 @@ public class Transit extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("user", "Abrera.123");
+                params.put("user", user);
                 return params;
             }
         };

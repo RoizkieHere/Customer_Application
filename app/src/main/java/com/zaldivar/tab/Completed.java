@@ -1,6 +1,7 @@
 package com.zaldivar.tab;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -40,35 +41,38 @@ public class Completed extends Fragment {
     private void fetch_data() {
         LinearLayoutCompat container = rootView.findViewById(R.id.completed_container);
 
+
+        SharedPreferences get_username = requireContext().getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
+        String user = get_username.getString("user", "");
+
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                if (response.isEmpty()){
-
-
-
-                } else {
+                if (!response.isEmpty()){
 
                     String[] row = response.split("<br>");
 
                     for (String column : row) {
                         String[] data = column.split(";");
 
-                        View newView = LayoutInflater.from(context).inflate(R.layout.completed_table_row, container, false);
+                        View newView = LayoutInflater.from(context).inflate(R.layout.info_completed, container, false);
 
-                        TextView weight = newView.findViewById(R.id.weight);
-                        TextView date = newView.findViewById(R.id.date);
-                        TextView unit = newView.findViewById(R.id.unit);
-                        TextView pahenante = newView.findViewById(R.id.pahenante);
-                        TextView arrived = newView.findViewById(R.id.arrived);
+                        TextView reference_number, order_date, quantity, price, fulfilled_date, pahenante;
+                        reference_number = newView.findViewById(R.id.reference_number);
+                        order_date = newView.findViewById(R.id.order_date);
+                        quantity = newView.findViewById(R.id.quantity);
+                        price = newView.findViewById(R.id. price);
+                        fulfilled_date = newView.findViewById(R.id.fulfilled_date);
+                        pahenante = newView.findViewById(R.id.pahenante);
 
-                        weight.setText(data[0]);
-                        date.setText(data[1]);
-                        unit.setText("Ton");
-                        pahenante.setText(data[2]);
-                        arrived.setText(data[3]);
+                        reference_number.setText(data[0]);
+                        order_date.setText(data[1]);
+                        quantity.setText(data[2]);
+                        price.setText(data[3]);
+                        fulfilled_date.setText(data[4]);
+                        pahenante.setText(data[5]);
 
                         container.addView(newView);
 

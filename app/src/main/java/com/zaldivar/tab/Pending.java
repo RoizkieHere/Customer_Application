@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -21,7 +20,6 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Pending extends Fragment {
 
@@ -47,6 +45,8 @@ public class Pending extends Fragment {
 
         SharedPreferences get_username = requireContext().getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
         String user = get_username.getString("user", "");
+
+
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -59,7 +59,7 @@ public class Pending extends Fragment {
                     for (String column : row) {
                         String[] data = column.split(";");
 
-                        View newView = LayoutInflater.from(context).inflate(R.layout.pending_info, container, false);
+                        View newView = LayoutInflater.from(context).inflate(R.layout.info_pending, container, false);
 
                         TextView reference_number, order_date, quantity, price;
                         reference_number = newView.findViewById(R.id.reference_number);
@@ -85,7 +85,7 @@ public class Pending extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("user", user);
+                params.put("username", user);
                 return params;
             }
         };
