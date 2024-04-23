@@ -3,36 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_gravity="center"
     android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/info_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:gravity="center"
-        android:layout_marginBottom="20dp"
+    
+    
+    <androidx.appcompat.widget.AppCompatTextView
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="Are you sure you want to order  10 tons?"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:src="@drawable/totoo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="10dp"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:text="Please fill the box with the desired order quantity."
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:hint="Amount in ton"
-        android:background="@drawable/input_field"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_marginTop="20dp"
@@ -40,15 +23,19 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:text="Cancel"
+            android:text="Yes"
+            android:layout_marginRight="10dp"
+            android:textSize="15sp"
             android:layout_weight="1"
             android:background="@drawable/button"
             android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+
         <androidx.appcompat.widget.AppCompatButton
-            android:text="Send Order"
+            android:text="No"
+            android:textSize="15sp"
             android:layout_weight="1"
             android:background="@drawable/button"
             android:textColor="@color/white"
