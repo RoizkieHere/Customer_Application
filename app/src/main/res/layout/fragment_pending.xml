@@ -9,11 +9,22 @@
     tools:context=".Pending">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:visibility="gone"
         android:id="@+id/pending_container"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:visibility="gone"
+        android:id="@+id/no_pending"
+        android:padding="50dp"
+        android:textSize="30sp"
+        android:text="No pending order as of the moment!"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 
