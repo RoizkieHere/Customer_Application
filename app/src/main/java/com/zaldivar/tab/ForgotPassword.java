@@ -58,15 +58,12 @@ public class ForgotPassword extends AppCompatActivity {
         send_otp = LayoutInflater.from(ForgotPassword.this).inflate(R.layout.forgot_password_otp, container, false);
         View form = LayoutInflater.from(ForgotPassword.this).inflate(R.layout.forgot_password_form, container, false);
 
-
-
         container.addView(send_email);
 
         //VIEW: send_email:
         AppCompatButton next_button = send_email.findViewById(R.id.next_button);
         AppCompatTextView error_msg_email = send_email.findViewById(R.id.error_msg_email);
         email = send_email.findViewById(R.id.email_address);
-
 
         //VIEW: send_otp:
         AppCompatButton submit_button = send_otp.findViewById(R.id.submit_button);
@@ -78,8 +75,6 @@ public class ForgotPassword extends AppCompatActivity {
         error_msg_form = form.findViewById(R.id.error_msg_form);
         new_password = form.findViewById(R.id.new_password);
         new_password_confirm = form.findViewById(R.id.new_password_confirm);
-
-
 
         next_button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("UseCompatLoadingForDrawables")

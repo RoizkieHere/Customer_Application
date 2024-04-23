@@ -66,7 +66,6 @@ public class Cancelled extends Fragment {
                         quantity = newView.findViewById(R.id.quantity);
                         cancel_date = newView.findViewById(R.id. cancel_date);
 
-
                         reference_number.setText(data[0]);
                         order_date.setText(data[1]);
                         quantity.setText(data[2]);
