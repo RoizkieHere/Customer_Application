@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -49,6 +51,17 @@ public class MainActivity extends AppCompatActivity {
             Intent supplier = new Intent(MainActivity.this, Login_Activity.class);
             startActivity(supplier);
         }
+
+        EditText amount = findViewById(R.id.amount);
+        Button send_order = findViewById(R.id.send_order);
+
+
+        send_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         email_address = sharedPreferences.getString("email", "");
         usernameString = sharedPreferences.getString("user", "");
@@ -132,6 +145,82 @@ public class MainActivity extends AppCompatActivity {
         popupMenu.show();
     }
 
+    private void fetch_latest_ref(){
+
+        String url = "https://zaldivarservices.com/android_new/customer_app/get_latest_ref";
+
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+        StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                String[] separate = response.split("<br>");
+
+                String date = separate[0];
+                String unique = separate[1];
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user", usernameString);
+                return params;
+            }
+        };
+        queue.add(sr);
+
+
+
+
+
+
+
+
+    }
+
+    private void send_now(String amount_ton){
+
+        /* TODO:
+
+            - method to fetch the latest reference number from the database
+            - if-else condition:
+                >
+
+
+         */
+
+        String url = "https://zaldivarservices.com/android_new/customer_app/send_order.php";
+
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+        StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user", usernameString);
+                params.put("amount_ton", amount_ton);
+                return params;
+            }
+        };
+        queue.add(sr);
+
+    }
+
     private void fetch_data(){
 
         String url = "https://zaldivarservices.com/android_new/customer_app/information.php";
@@ -156,11 +245,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         queue.add(sr);
-
-
-
-
-
 
     }
 

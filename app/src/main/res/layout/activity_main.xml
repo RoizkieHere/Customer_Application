@@ -226,6 +226,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/amount"
                 android:layout_weight="1"
                 android:hint="Amount in ton"
                 android:textColor="@color/white"
@@ -238,6 +239,7 @@
                 android:layout_height="50dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/send_order"
                 android:elevation="20dp"
                 android:layout_weight="1"
                 android:textAllCaps="false"
