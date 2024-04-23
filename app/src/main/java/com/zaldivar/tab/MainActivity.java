@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         vpAdapter.addFragment(new Pending(), "Pending");
         vpAdapter.addFragment(new Transit(), "On Delivery");
         vpAdapter.addFragment(new Completed(), "Completed");
-        vpAdapter.addFragment(new Completed(), "Cancelled");
+        vpAdapter.addFragment(new Cancelled(), "Cancelled");
         RequestQueue requestQueue;
 
 

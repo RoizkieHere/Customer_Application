@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,7 +27,7 @@ public class Transit extends Fragment {
 
     private Context context;
     private View rootView;
-    private String url = "https://zaldivarservices.com/android_new/customer_app/in_transit/in_transit.php";
+    String url = "https://zaldivarservices.com/android_new/customer_app/in_transit/in_transit.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +41,8 @@ public class Transit extends Fragment {
 
     private void fetch_data() {
         LinearLayoutCompat container = rootView.findViewById(R.id.transit_container);
+
+        String url = "https://zaldivarservices.com/android_new/customer_app/in_transit/in_transit.php";
 
         SharedPreferences get_username = requireContext().getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
         String user = get_username.getString("user", "");
