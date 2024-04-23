@@ -1,6 +1,7 @@
 package com.zaldivar.tab;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -25,7 +26,7 @@ public class Cancelled extends Fragment {
 
     private Context context;
     private View rootView;
-    private final String url = "https://zaldivarservices.com/android_new/customer_app/cancelled/cancelled.phpi";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,7 +39,13 @@ public class Cancelled extends Fragment {
     }
 
     private void fetch_data() {
+
+        String url = "https://zaldivarservices.com/android_new/customer_app/Cancelled/cancelled.php";
+
         LinearLayoutCompat container = rootView.findViewById(R.id.cancelled_container);
+
+        SharedPreferences get_username = requireContext().getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
+        String user = get_username.getString("user", "");
 
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -51,14 +58,19 @@ public class Cancelled extends Fragment {
 
                     for (String column : row) {
                         String[] data = column.split(";");
+                        View newView = LayoutInflater.from(context).inflate(R.layout.info_cancelled, container, false);
 
-                        View newView = LayoutInflater.from(context).inflate(R.layout.completed_table_row, container, false);
+                        TextView reference_number, order_date, quantity, cancel_date;
+                        reference_number = newView.findViewById(R.id.reference_number);
+                        order_date = newView.findViewById(R.id.order_date);
+                        quantity = newView.findViewById(R.id.quantity);
+                        cancel_date = newView.findViewById(R.id. cancel_date);
 
-                        TextView weight = newView.findViewById(R.id.weight);
-                        TextView date = newView.findViewById(R.id.date);
-                        TextView unit = newView.findViewById(R.id.unit);
-                        TextView pahenante = newView.findViewById(R.id.pahenante);
-                        TextView arrived = newView.findViewById(R.id.arrived);
+
+                        reference_number.setText(data[0]);
+                        order_date.setText(data[1]);
+                        quantity.setText(data[2]);
+                        cancel_date.setText(data[3]);
 
 
                         container.addView(newView);
@@ -74,7 +86,7 @@ public class Cancelled extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("user", "Abrera.123");
+                params.put("user", user);
                 return params;
             }
         };

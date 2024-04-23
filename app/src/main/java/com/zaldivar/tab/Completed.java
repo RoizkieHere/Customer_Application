@@ -89,7 +89,7 @@ public class Completed extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("user", "Abrera.123");
+                params.put("user", user);
                 return params;
             }
         };
