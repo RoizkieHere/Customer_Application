@@ -32,6 +32,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -218,9 +219,18 @@ public class MainActivity extends AppCompatActivity {
 
                 int ref = Integer.parseInt(reference);
 
-                String date_in_reference = Arrays.toString(reference.split("", 7));
+                String[] filtered = reference.split("", 7);
 
-                if (date_in_reference.equals(date)){
+                StringJoiner joiner = new StringJoiner("");
+
+
+                for (String s : filtered) {
+                    joiner.add(s);
+                }
+
+                String date_from_reference = joiner.toString();
+
+                if (date_from_reference.equals(date)){
                     generated_reference = String.valueOf(ref + 1);
                 } else {
                     generated_reference = date + "0";

@@ -2,20 +2,21 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="ForgotPassword">
-        <State />
-      </entry>
-      <entry key="Login_Activity">
-        <State />
-      </entry>
       <entry key="MainActivity">
-        <State />
-      </entry>
-      <entry key="SignupForm">
-        <State />
-      </entry>
-      <entry key="Signup_Activity">
-        <State />
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="8DRSEEWSFMKVEYVW" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-24T11:45:57.565774825Z" />
+        </State>
       </entry>
       <entry key="app">
         <State />
