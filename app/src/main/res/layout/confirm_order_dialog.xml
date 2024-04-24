@@ -10,6 +10,7 @@
     
     
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/question"
         android:textAlignment="center"
         android:textSize="20sp"
         android:text="Are you sure you want to order  10 tons?"

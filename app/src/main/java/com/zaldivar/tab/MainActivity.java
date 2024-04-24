@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText amount;
 
+    Dialog confirmation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         amount = findViewById(R.id.amount);
         Button send_order = findViewById(R.id.send_order);
 
-        Dialog confirmation =  new Dialog(MainActivity.this);
+        confirmation =  new Dialog(MainActivity.this);
 
 
         send_order.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
                 Button yes = confirmation.findViewById(R.id.yes);
                 Button no = confirmation.findViewById(R.id.no);
+                TextView question =  confirmation.findViewById(R.id.question);
+
+
+                question.setText("Are you sure you want to order ".concat(amount.getText().toString()).concat( "ton/s?"));
 
                 yes.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -230,11 +236,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
+                if (response.equals("Success")){
+
+                    confirmation.dismiss();
+                    Toast.makeText(MainActivity.this, "Order sent successfully!", Toast.LENGTH_LONG).show();
+
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // Handle error
+                Toast.makeText(MainActivity.this, "Failed to send order. Please try again later!", Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
