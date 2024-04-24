@@ -73,44 +73,49 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 fetch_latest_ref();
 
-                confirmation.setContentView(R.layout.confirm_order_dialog);
-                confirmation.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                confirmation.setCancelable(false);
-                confirmation.getWindow().getAttributes().windowAnimations = R.style.animation;
+                if (amount.getText().toString().isEmpty()) {
+                    Toast.makeText(MainActivity.this, "It is empty. Please fill it out with the desired quantity.", Toast.LENGTH_SHORT).show();
+                } else {
 
-                Button yes = confirmation.findViewById(R.id.yes);
-                Button no = confirmation.findViewById(R.id.no);
-                TextView question =  confirmation.findViewById(R.id.question);
+                    confirmation.setContentView(R.layout.confirm_order_dialog);
+                    confirmation.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    confirmation.setCancelable(false);
+                    confirmation.getWindow().getAttributes().windowAnimations = R.style.animation;
 
-                int amount_int = Integer.parseInt(amount.getText().toString());
+                    Button yes = confirmation.findViewById(R.id.yes);
+                    Button no = confirmation.findViewById(R.id.no);
+                    TextView question =  confirmation.findViewById(R.id.question);
 
-                if (amount_int == 1){
-                    question.setText("Are you sure you want to order ".concat(amount.getText().toString()).concat( " ton of copra?"));
-                } else if (amount_int > 1) {
-                    question.setText("Are you sure you want to order ".concat(amount.getText().toString()).concat( " tons of copra?"));
-                } else if (amount.getText().toString().isEmpty()) {
-                    amount.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                    double amount_int = Double.parseDouble(amount.getText().toString());
+
+
+                    if (amount_int <= 1.0){
+                        question.setText("Are you sure you want to order ".concat(amount.getText().toString()).concat( " ton of copra?"));
+                    } else if (amount_int > 1.0) {
+                        question.setText("Are you sure you want to order ".concat(amount.getText().toString()).concat( " tons of copra?"));
+                    }
+
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            send_now();
+
+                        }
+                    });
+
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            confirmation.dismiss();
+
+                        }
+                    });
+
+                    confirmation.show();
+
+
                 }
-
-                yes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        send_now();
-
-                    }
-                });
-
-                no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        confirmation.dismiss();
-
-                    }
-                });
-
-                confirmation.show();
-
 
             }
         });

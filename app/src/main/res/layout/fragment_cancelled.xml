@@ -6,73 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginBottom="2dp"
+       android:scrollbars="none">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/weight"
-            android:text="1"
-            android:textColor="#7C7C7C"
-            android:textAlignment="center"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+       <androidx.appcompat.widget.LinearLayoutCompat
+           android:id="@+id/cancelled_container"
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/unit"
-            android:textColor="#7C7C7C"
-            android:text="Ton"
-            android:textAlignment="center"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/pahenante"
-            android:textColor="#7C7C7C"
-            android:layout_weight="1"
-            android:text="Pahenante"
-            android:textAlignment="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/date"
-            android:textColor="#7C7C7C"
-            android:layout_weight="1"
-            android:text="Order Date"
-            android:textAlignment="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/arrived"
-            android:textColor="#7C7C7C"
-            android:layout_weight="1"
-            android:text="Arrived"
-            android:textAlignment="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/cancelled_container"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp">
-
-
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-
+   </ScrollView>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
