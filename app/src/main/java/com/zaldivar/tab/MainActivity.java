@@ -1,5 +1,6 @@
 package com.zaldivar.tab;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     String generated_reference;
 
+    EditText amount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,13 +60,44 @@ public class MainActivity extends AppCompatActivity {
             startActivity(supplier);
         }
 
-        EditText amount = findViewById(R.id.amount);
+        amount = findViewById(R.id.amount);
         Button send_order = findViewById(R.id.send_order);
+
+        Dialog confirmation =  new Dialog(MainActivity.this);
 
 
         send_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fetch_latest_ref();
+
+                confirmation.setContentView(R.layout.confirm_order_dialog);
+                confirmation.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                confirmation.setCancelable(false);
+                confirmation.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+                Button yes = confirmation.findViewById(R.id.yes);
+                Button no = confirmation.findViewById(R.id.no);
+
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        send_now();
+
+                    }
+                });
+
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        confirmation.dismiss();
+
+                    }
+                });
+
+                confirmation.show();
+
 
             }
         });
@@ -151,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void fetch_latest_ref(){
 
-        String url = "https://zaldivarservices.com/android_new/customer_app/get_latest_ref";
+        String url = "https://zaldivarservices.com/android_new/customer_app/get_latest_ref.php";
 
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -165,48 +200,28 @@ public class MainActivity extends AppCompatActivity {
 
                 String date_in_reference = Arrays.toString(reference.split("", 7));
 
-                 if (date_in_reference.equals(date)){
-                     Toast.makeText(MainActivity.this, "Same".concat(date_in_reference).concat(" ").concat(date), Toast.LENGTH_SHORT).show();
-                } else {
-                     Toast.makeText(MainActivity.this, "Not the same", Toast.LENGTH_SHORT).show();
-                }
-
-                /* if (date_in_reference.equals(date)){
+                if (date_in_reference.equals(date)){
                     generated_reference = String.valueOf(Integer.parseInt(reference) + 1);
                 } else {
                     generated_reference = date + "0";
-                } */
+                }
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // Handle error
+
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("user", usernameString);
-                return params;
-            }
-        };
+        });
+
         queue.add(sr);
 
     }
 
 
 
-    private void send_now(String amount_ton){
+    private void send_now(){
 
-        /* TODO:
-
-            - method to fetch the latest reference number from the database
-            - if-else condition:
-                >
-
-
-         */
 
         String url = "https://zaldivarservices.com/android_new/customer_app/send_order.php";
 
@@ -226,7 +241,9 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("user", usernameString);
-                params.put("amount_ton", amount_ton);
+                params.put("quantity", amount.getText().toString());
+                params.put("reference", generated_reference);
+
                 return params;
             }
         };

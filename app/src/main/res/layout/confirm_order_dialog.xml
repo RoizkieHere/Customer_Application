@@ -23,6 +23,7 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/yes"
             android:text="Yes"
             android:layout_marginRight="10dp"
             android:textSize="15sp"
@@ -34,6 +35,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/no"
             android:text="No"
             android:textSize="15sp"
             android:layout_weight="1"
