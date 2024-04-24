@@ -82,8 +82,15 @@ public class MainActivity extends AppCompatActivity {
                 Button no = confirmation.findViewById(R.id.no);
                 TextView question =  confirmation.findViewById(R.id.question);
 
+                int amount_int = Integer.parseInt(amount.getText().toString());
 
-                question.setText("Are you sure you want to order ".concat(amount.getText().toString()).concat( "ton/s?"));
+                if (amount_int == 1){
+                    question.setText("Are you sure you want to order ".concat(amount.getText().toString()).concat( " ton of copra?"));
+                } else if (amount_int > 1) {
+                    question.setText("Are you sure you want to order ".concat(amount.getText().toString()).concat( " tons of copra?"));
+                } else if (amount.getText().toString().isEmpty()) {
+                    amount.setBackground(getResources().getDrawable(R.drawable.error_input_field, null));
+                }
 
                 yes.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -204,10 +211,12 @@ public class MainActivity extends AppCompatActivity {
                 date = separate[0];
                 reference = separate[1];
 
+                int ref = Integer.parseInt(reference);
+
                 String date_in_reference = Arrays.toString(reference.split("", 7));
 
                 if (date_in_reference.equals(date)){
-                    generated_reference = String.valueOf(Integer.parseInt(reference) + 1);
+                    generated_reference = String.valueOf(ref + 1);
                 } else {
                     generated_reference = date + "0";
                 }

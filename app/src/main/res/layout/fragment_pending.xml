@@ -8,13 +8,22 @@
     android:layout_height="match_parent"
     tools:context=".Pending">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:visibility="gone"
-        android:id="@+id/pending_container"
-        android:orientation="vertical"
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"/>
+        android:layout_marginBottom="2dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:visibility="gone"
+            android:id="@+id/pending_container"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
+
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:visibility="gone"
