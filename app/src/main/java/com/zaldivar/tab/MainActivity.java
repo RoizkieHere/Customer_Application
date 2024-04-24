@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -26,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,11 +36,13 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
 
-    String email_address, usernameString;
+    String email_address, usernameString, reference, date;
 
     SharedPreferences sharedPreferences;
 
     ImageView settings;
+
+    String generated_reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,8 +160,22 @@ public class MainActivity extends AppCompatActivity {
 
                 String[] separate = response.split("<br>");
 
-                String date = separate[0];
-                String unique = separate[1];
+                date = separate[0];
+                reference = separate[1];
+
+                String date_in_reference = Arrays.toString(reference.split("", 7));
+
+                 if (date_in_reference.equals(date)){
+                     Toast.makeText(MainActivity.this, "Same".concat(date_in_reference).concat(" ").concat(date), Toast.LENGTH_SHORT).show();
+                } else {
+                     Toast.makeText(MainActivity.this, "Not the same", Toast.LENGTH_SHORT).show();
+                }
+
+                /* if (date_in_reference.equals(date)){
+                    generated_reference = String.valueOf(Integer.parseInt(reference) + 1);
+                } else {
+                    generated_reference = date + "0";
+                } */
 
             }
         }, new Response.ErrorListener() {
@@ -175,14 +193,9 @@ public class MainActivity extends AppCompatActivity {
         };
         queue.add(sr);
 
-
-
-
-
-
-
-
     }
+
+
 
     private void send_now(String amount_ton){
 
