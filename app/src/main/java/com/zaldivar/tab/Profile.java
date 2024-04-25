@@ -44,6 +44,11 @@ public class Profile extends AppCompatActivity {
         TextView delete_account = findViewById(R.id.delete_acc);
         Button update = findViewById(R.id.update_button);
 
+        SharedPreferences get_it = getSharedPreferences("this_preferences", MODE_PRIVATE);
+
+        TextView user_named = findViewById(R.id.username_text_profile);
+        user_named.setText(get_it.getString("user", ""));
+
         what = "0";
 
         update_info();
