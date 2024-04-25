@@ -212,28 +212,36 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                String[] separate = response.split("<br>");
+                String[] main_res = response.split(";");
 
-                date = separate[0];
-                reference = separate[1];
-
-                int ref = Integer.parseInt(reference);
-
-                String[] filtered = reference.split("", 7);
-
-                StringJoiner joiner = new StringJoiner("");
-
-
-                for (String s : filtered) {
-                    joiner.add(s);
-                }
-
-                String date_from_reference = joiner.toString();
-
-                if (date_from_reference.equals(date)){
-                    generated_reference = String.valueOf(ref + 1);
+                if (main_res[0].equals("N/R")){
+                    generated_reference = main_res[1] + "0";
                 } else {
-                    generated_reference = date + "0";
+
+                    String[] separate = response.split("<br>");
+
+                    date = separate[0];
+                    reference = separate[1];
+
+                    int ref = Integer.parseInt(reference);
+
+                    String[] filtered = reference.split("", 7);
+
+                    StringJoiner joiner = new StringJoiner("");
+
+
+                    for (String s : filtered) {
+                        joiner.add(s);
+                    }
+
+                    String date_from_reference = joiner.toString();
+
+                    if (date_from_reference.equals(date)){
+                        generated_reference = String.valueOf(ref + 1);
+                    } else {
+                        generated_reference = date + "0";
+                    }
+
                 }
 
             }
