@@ -29,7 +29,10 @@ import java.util.Map;
 
 public class Profile extends AppCompatActivity {
 
-    EditText new_username, contact_num;
+    EditText contact_num;
+
+    TextView new_username;
+    String what, dial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +44,29 @@ public class Profile extends AppCompatActivity {
         TextView delete_account = findViewById(R.id.delete_acc);
         Button update = findViewById(R.id.update_button);
 
-        update_info(0);
+        what = "0";
+
+        update_info();
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update_info(1);
+                what = "1";
+                update_info();
             }
         });
 
         delete_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update_info(2);
+                what="2";
+                update_info();
             }
         });
 
     }
 
-    private void update_info(int choose){
+    private void update_info(){
 
         SharedPreferences get = getSharedPreferences("this_preferences", MODE_PRIVATE);
         String user = get.getString("user", "");
@@ -67,12 +74,12 @@ public class Profile extends AppCompatActivity {
 
         String url;
 
-        if (choose == 0){
+        if (what.equals("0")){
             url = "https://zaldivarservices.com/android_new/customer_app/account/fetch.php";
-        } else if (choose == 1){
+        } else if (what.equals("1")){
             url = "https://zaldivarservices.com/android_new/customer_app/account/update_profile.php";
         } else {
-            url = "";
+            url = "https://zaldivarservices.com/android_new/customer_app/account/delete.php";
         }
 
 
@@ -82,12 +89,12 @@ public class Profile extends AppCompatActivity {
             public void onResponse(String response) {
 
                 if (response.equals("Changed")){
-
-                    dialog(0);
+                    dial = "0";
+                    dialog();
 
                 } else if (response.equals("Deleted")){
-
-                    dialog(1);
+                    dial = "1";
+                    dialog();
 
                 } else {
                     String[] the_response = response.split(";");
@@ -102,22 +109,20 @@ public class Profile extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // Handle error
+                Toast.makeText(Profile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                if (choose == 0 || choose == 2){
-                    params.put("username", user);
-                    return params;
+                if (what.equals("0") || what.equals("2")){
+                    params.put("user", user);
                 } else{
-                    params.put("username", user);
-                    params.put("new_username", new_username.getText().toString());
+                    params.put("user", user);
                     params.put("contact_number", contact_num.getText().toString());
-                    return params;
                 }
+                return params;
 
 
             }
@@ -126,7 +131,7 @@ public class Profile extends AppCompatActivity {
 
     }
 
-    private void dialog(int what){
+    private void dialog(){
 
         Dialog success = new Dialog(Profile.this);
 
@@ -138,9 +143,8 @@ public class Profile extends AppCompatActivity {
         TextView message = success.findViewById(R.id.error_message);
         Button button = success.findViewById(R.id.button);
 
-        if (what == 0){
+        if (dial.equals("0")){
 
-            Toast.makeText(Profile.this, "Profile Updated!", Toast.LENGTH_SHORT).show();
             SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -148,10 +152,12 @@ public class Profile extends AppCompatActivity {
             editor.putString("user", new_username.getText().toString());
             editor.apply();
 
+            success.show();
+
             message.setText("Your profile information has been successfully changed.");
             button.setText("Home");
 
-            success.show();
+
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -72,14 +72,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:text="Roi Abrera"
-                android:id="@+id/username"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:textColor="@color/txt"/>
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:text="Roi Abrera"
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/txt"/>
+
+            </HorizontalScrollView>
+
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/email_address"

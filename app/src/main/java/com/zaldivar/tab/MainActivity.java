@@ -123,12 +123,13 @@ public class MainActivity extends AppCompatActivity {
 
         email_address = sharedPreferences.getString("email", "");
         usernameString = sharedPreferences.getString("user", "");
+        String name = sharedPreferences.getString("name", "");
 
         //Dashboard:
         TextView username_txt = findViewById(R.id.username);
         TextView email_add_txt = findViewById(R.id.email_address);
 
-        username_txt.setText(usernameString);
+        username_txt.setText(name);
         email_add_txt.setText(email_address);
 
 
