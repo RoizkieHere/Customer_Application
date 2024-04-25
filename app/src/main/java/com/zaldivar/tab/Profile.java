@@ -32,7 +32,7 @@ public class Profile extends AppCompatActivity {
     EditText contact_num;
 
     TextView new_username;
-    String what, dial;
+    String what;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,6 @@ public class Profile extends AppCompatActivity {
 
         new_username = findViewById(R.id.profile_username);
         contact_num = findViewById(R.id.profile_contact);
-        TextView delete_account = findViewById(R.id.delete_acc);
         Button update = findViewById(R.id.update_button);
 
         SharedPreferences get_it = getSharedPreferences("this_preferences", MODE_PRIVATE);
@@ -50,7 +49,6 @@ public class Profile extends AppCompatActivity {
         user_named.setText(get_it.getString("user", ""));
 
         what = "0";
-
         update_info();
 
         update.setOnClickListener(new View.OnClickListener() {
@@ -61,13 +59,6 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        delete_account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                what="2";
-                update_info();
-            }
-        });
 
     }
 
@@ -81,10 +72,8 @@ public class Profile extends AppCompatActivity {
 
         if (what.equals("0")){
             url = "https://zaldivarservices.com/android_new/customer_app/account/fetch.php";
-        } else if (what.equals("1")){
-            url = "https://zaldivarservices.com/android_new/customer_app/account/update_profile.php";
         } else {
-            url = "https://zaldivarservices.com/android_new/customer_app/account/delete.php";
+            url = "https://zaldivarservices.com/android_new/customer_app/account/update_profile.php";
         }
 
 
@@ -94,11 +83,6 @@ public class Profile extends AppCompatActivity {
             public void onResponse(String response) {
 
                 if (response.equals("Changed")){
-                    dial = "0";
-                    dialog();
-
-                } else if (response.equals("Deleted")){
-                    dial = "1";
                     dialog();
 
                 } else {
@@ -121,12 +105,9 @@ public class Profile extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                if (what.equals("0") || what.equals("2")){
-                    params.put("user", user);
-                } else{
-                    params.put("user", user);
-                    params.put("contact_number", contact_num.getText().toString());
-                }
+                params.put("user", user);
+                params.put("contact_number", contact_num.getText().toString());
+
                 return params;
 
 
@@ -148,57 +129,27 @@ public class Profile extends AppCompatActivity {
         TextView message = success.findViewById(R.id.error_message);
         Button button = success.findViewById(R.id.button);
 
-        if (dial.equals("0")){
 
-            SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            //Change username in a shared preference...
-            editor.putString("user", new_username.getText().toString());
-            editor.apply();
+        //Change username in a shared preference...
+        editor.putString("user", new_username.getText().toString());
+        editor.apply();
 
-            success.show();
+        message.setText("Your profile information has been successfully changed.");
+        button.setText("Home");
 
-            message.setText("Your profile information has been successfully changed.");
-            button.setText("Home");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                success.dismiss();
+                Intent home = new Intent(Profile.this, MainActivity.class);
+                startActivity(home);
+            }
+        });
 
-
-
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    success.dismiss();
-                    Intent home = new Intent(Profile.this, MainActivity.class);
-                    startActivity(home);
-                }
-            });
-
-        } else {
-            message.setText("Your account has been successfully deleted.");
-            button.setText("Login");
-
-            success.show();
-
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    SharedPreferences sharedPreferences = getSharedPreferences("this_preferences", MODE_PRIVATE);
-                    // Clear values of sharedpreferences:
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.clear();
-                    editor.apply();
-
-                    success.dismiss();
-
-                    Intent login = new Intent(Profile.this, Login_Activity.class);
-                    startActivity(login);
-
-                }
-            });
-
-        }
-
+        success.show();
 
     }
 }
