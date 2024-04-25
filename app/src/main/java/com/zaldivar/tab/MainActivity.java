@@ -185,8 +185,15 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(to_forgot);
 
                     return  true;
-                } else {
+                } else if (item.getItemId() ==  R.id.change_profile) {
 
+                    Intent to_profile = new Intent(MainActivity.this, Profile.class);
+                    startActivity(to_profile);
+
+
+                    return  true;
+
+                } else {
                     return false;
                 }
             }

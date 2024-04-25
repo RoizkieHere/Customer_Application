@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    tools:context=".Login_Activity">
+    tools:context=".Profile">
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -62,11 +62,11 @@
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/profile_username"
             android:paddingStart="15dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/input_field"
             android:textSize="15sp"
-            android:id="@+id/login_username"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
@@ -84,12 +84,12 @@
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/profile_contact"
             android:paddingStart="15dp"
             android:background="@drawable/input_field"
             android:layout_marginBottom="15dp"
             android:textColor="@color/gray2"
             android:textSize="15sp"
-            android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
