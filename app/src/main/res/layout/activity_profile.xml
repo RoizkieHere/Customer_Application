@@ -1,10 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.appcompat.widget.LinearLayoutCompat
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/login_view"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile">
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context=".Login_Activity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:src="@drawable/baseline_account_circle_24"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="CHANGE PROFILE INFORMATION"
+            android:textColor="@color/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:textSize="13sp"
+            android:hint="Update your profile information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_gravity="start"
+            android:hint="Username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:paddingStart="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/input_field"
+            android:textSize="15sp"
+            android:id="@+id/login_username"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:textColor="@color/gray2"
+            android:inputType="text"
+            android:text="Ako lang to"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="191dp"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:layout_gravity="start"
+            android:hint="Contact number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:paddingStart="15dp"
+            android:background="@drawable/input_field"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/gray2"
+            android:textSize="15sp"
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:text="09390017483"
+            android:inputType="number"
+            tools:layout_editor_absoluteX="125dp"
+            tools:layout_editor_absoluteY="271dp"
+            tools:ignore="RtlSymmetry" />
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/update_button"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:text="UPDATE"
+            android:background="@drawable/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/delete_acc"
+            android:textSize="13sp"
+            android:textColor="@color/red"
+            android:clickable="true"
+            android:layout_marginTop="10dp"
+            android:text="Delete Account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
