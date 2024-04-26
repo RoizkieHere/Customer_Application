@@ -223,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
                 String[] main_res = response.split(";");
 
                 if (main_res[0].equals("N/R")){
+                    Toast.makeText(MainActivity.this, main_res[1], Toast.LENGTH_SHORT).show();
                     generated_reference = main_res[1] + "0";
                 } else {
 
