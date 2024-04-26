@@ -226,10 +226,8 @@ public class MainActivity extends AppCompatActivity {
                     generated_reference = main_res[1] + "0";
                 } else {
 
-                    String[] separate = response.split("<br>");
-
-                    date = separate[0];
-                    reference = separate[1];
+                    date = main_res[1];
+                    reference = main_res[0];
 
                     int ref = Integer.parseInt(reference);
 
@@ -271,6 +269,10 @@ public class MainActivity extends AppCompatActivity {
 
         String url = "https://zaldivarservices.com/android_new/customer_app/send_order.php";
 
+        SharedPreferences gs = getSharedPreferences("this_preferences", MODE_PRIVATE);
+        String usern = gs.getString("user", "");
+
+
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -287,13 +289,13 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, "Failed to send order. Please try again later!", Toast.LENGTH_LONG).show();
+
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("user", usernameString);
+                params.put("user", usern);
                 params.put("quantity", amount.getText().toString());
                 params.put("reference", generated_reference);
 
@@ -304,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void fetch_data(){
+    /* private void fetch_data(){
 
         String url = "https://zaldivarservices.com/android_new/customer_app/information.php";
 
@@ -329,6 +331,6 @@ public class MainActivity extends AppCompatActivity {
         };
         queue.add(sr);
 
-    }
+    } */
 
 }

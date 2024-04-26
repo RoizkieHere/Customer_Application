@@ -29,9 +29,8 @@ import java.util.Map;
 
 public class Profile extends AppCompatActivity {
 
-    EditText contact_num;
+    EditText contact_num, firstname, lastname;
 
-    TextView new_username;
     String what;
 
     @Override
@@ -39,8 +38,9 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        new_username = findViewById(R.id.profile_username);
         contact_num = findViewById(R.id.profile_contact);
+        firstname = findViewById(R.id.profile_firstname);
+        lastname = findViewById(R.id.profile_lastname);
         Button update = findViewById(R.id.update_button);
 
         SharedPreferences get_it = getSharedPreferences("this_preferences", MODE_PRIVATE);
@@ -87,8 +87,10 @@ public class Profile extends AppCompatActivity {
 
                 } else {
                     String[] the_response = response.split(";");
-                    new_username.setText(the_response[0]);
                     contact_num.setText(the_response[1]);
+                    firstname.setText(the_response[0]);
+                    lastname.setText(the_response[2]);
+
                 }
 
 
@@ -107,6 +109,8 @@ public class Profile extends AppCompatActivity {
 
                 params.put("user", user);
                 params.put("contact_number", contact_num.getText().toString());
+                params.put("firstname", firstname.getText().toString());
+                params.put("lastname", lastname.getText().toString());
 
                 return params;
 
@@ -126,7 +130,7 @@ public class Profile extends AppCompatActivity {
         success.setCancelable(false);
         success.getWindow().getAttributes().windowAnimations = R.style.animation;
 
-        TextView message = success.findViewById(R.id.error_message);
+        TextView message = success.findViewById(R.id.message);
         Button button = success.findViewById(R.id.button);
 
 
@@ -134,7 +138,7 @@ public class Profile extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         //Change username in a shared preference...
-        editor.putString("user", new_username.getText().toString());
+        editor.putString("name", firstname.getText().toString().concat(" ").concat(lastname.getText().toString()));
         editor.apply();
 
         message.setText("Your profile information has been successfully changed.");

@@ -64,16 +64,14 @@ public class Pending extends Fragment {
 
                         View newView = LayoutInflater.from(context).inflate(R.layout.info_pending, container, false);
 
-                        TextView reference_number, order_date, quantity, price;
-                        reference_number = newView.findViewById(R.id.reference_number);
-                        order_date = newView.findViewById(R.id.order_date);
+                        TextView reference_number, order_date, quantity;
+                        reference_number = newView.findViewById(R.id.reference);
+                        order_date = newView.findViewById(R.id.date);
                         quantity = newView.findViewById(R.id.quantity);
-                        price = newView.findViewById(R.id. price);
 
                         reference_number.setText(data[0]);
                         order_date.setText(data[1]);
                         quantity.setText(data[2]);
-                        price.setText(data[3]);
 
                         container.addView(newView);
                     }
