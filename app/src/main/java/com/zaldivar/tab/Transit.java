@@ -2,6 +2,7 @@ package com.zaldivar.tab;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -62,19 +63,21 @@ public class Transit extends Fragment {
                         View newView = LayoutInflater.from(context).inflate(R.layout.info_transit, container, false);
 
                         TextView reference_number, order_date, quantity, price, pahenante, status;
-                        reference_number = newView.findViewById(R.id.reference_number);
-                        order_date = newView.findViewById(R.id.order_date);
+                        reference_number = newView.findViewById(R.id.reference);
+                        order_date = newView.findViewById(R.id.date);
                         quantity = newView.findViewById(R.id.quantity);
-                        price = newView.findViewById(R.id. price);
-                        pahenante = newView.findViewById(R.id.pahenante);
                         status = newView.findViewById(R.id.status);
 
                         reference_number.setText(data[0]);
                         order_date.setText(data[1]);
                         quantity.setText(data[2]);
-                        price.setText(data[3]);
-                        pahenante.setText(data[4]);
-                        status.setText(data[5]);
+                        status.setText(data[3]);
+
+                        if (data[3].equals("Scheduled")){
+                            status.setTextColor(Color.parseColor("#F0923848"));
+                        } else {
+                            status.setTextColor(Color.parseColor("#F0958504"));
+                        }
 
                         container.addView(newView);
                     }

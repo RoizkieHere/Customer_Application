@@ -2,6 +2,7 @@ package com.zaldivar.tab;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -26,7 +27,7 @@ public class Completed extends Fragment {
 
     private Context context;
     private View rootView;
-    private String url = "https://zaldivarservices.com/android_new/customer_app/completed/completed.php";
+    String url = "https://zaldivarservices.com/android_new/customer_app/completed/completed.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +51,7 @@ public class Completed extends Fragment {
             @Override
             public void onResponse(String response) {
 
-                if (!response.isEmpty()){
+                if(!response.isEmpty()){
 
                     String[] row = response.split("<br>");
 
@@ -59,25 +60,19 @@ public class Completed extends Fragment {
 
                         View newView = LayoutInflater.from(context).inflate(R.layout.info_completed, container, false);
 
-                        TextView reference_number, order_date, quantity, price, fulfilled_date, pahenante;
-                        reference_number = newView.findViewById(R.id.reference_number);
-                        order_date = newView.findViewById(R.id.order_date);
+                        TextView ref_number, arrival_date, quantity, price;
+                        ref_number = newView.findViewById(R.id.reference);
+                        arrival_date = newView.findViewById(R.id.date);
                         quantity = newView.findViewById(R.id.quantity);
-                        price = newView.findViewById(R.id. price);
-                        fulfilled_date = newView.findViewById(R.id.fulfilled_date);
-                        pahenante = newView.findViewById(R.id.pahenante);
+                        price = newView.findViewById(R.id.price);
 
-                        reference_number.setText(data[0]);
-                        order_date.setText(data[1]);
-                        quantity.setText(data[2]);
-                        price.setText(data[3]);
-                        fulfilled_date.setText(data[4]);
-                        pahenante.setText(data[5]);
+                        ref_number.setText(data[0]);
+                        arrival_date.setText(data[3]);
+                        quantity.setText(data[1]);
+                        price.setText(data[2]);
 
                         container.addView(newView);
-
                     }
-
                 }
             }
         }, new Response.ErrorListener() {

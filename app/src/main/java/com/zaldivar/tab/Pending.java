@@ -148,7 +148,7 @@ public class Pending extends Fragment {
 
     }
 
-    private void cancel_it(String reference, Dialog confirmation ){
+    private void cancel_it(String reference, Dialog confirmation){
 
         String url = "https://zaldivarservices.com/android_new/customer_app/pending_api/update_it.php";
 
