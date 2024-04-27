@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(supplier);
         }
 
+
         amount = findViewById(R.id.amount);
         Button send_order = findViewById(R.id.send_order);
 
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         send_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 fetch_latest_ref();
 
                 if (amount.getText().toString().isEmpty()) {
@@ -220,33 +222,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                String[] main_res = response.split(";");
-
-                if (main_res[0].equals("N/R")){
-                    generated_reference = main_res[1] + "0";
+                if (response.equals("N")){
+                    int random_num = 10000000  + (int)(Math.random() * ((99999999 - 10000000) + 1));
+                    generated_reference = Integer.toString(random_num);
                 } else {
-
-                    date = main_res[1];
-                    reference = main_res[0];
-
-                    int ref = Integer.parseInt(reference);
-
-                    String[] filtered = reference.split("", 7);
-
-                    StringJoiner joiner = new StringJoiner("");
-
-                    for (String s : filtered) {
-                        joiner.add(s);
-                    }
-
-                    String date_from_reference = joiner.toString();
-
-                    if (date_from_reference.equals(date)){
-                        generated_reference = String.valueOf(ref + 1);
-                    } else {
-                        generated_reference = date.concat("0");
-                    }
-
+                    int response_int = Integer.parseInt(response);
+                    generated_reference = String.valueOf(++response_int);
                 }
 
             }
@@ -271,7 +252,6 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 if (response.equals("Success")){
-
                     confirmation.dismiss();
                     Toast.makeText(MainActivity.this, "Order sent successfully!", Toast.LENGTH_LONG).show();
 
