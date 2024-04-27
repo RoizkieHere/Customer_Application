@@ -223,7 +223,6 @@ public class MainActivity extends AppCompatActivity {
                 String[] main_res = response.split(";");
 
                 if (main_res[0].equals("N/R")){
-                    Toast.makeText(MainActivity.this, main_res[1], Toast.LENGTH_SHORT).show();
                     generated_reference = main_res[1] + "0";
                 } else {
 
@@ -236,7 +235,6 @@ public class MainActivity extends AppCompatActivity {
 
                     StringJoiner joiner = new StringJoiner("");
 
-
                     for (String s : filtered) {
                         joiner.add(s);
                     }
@@ -246,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
                     if (date_from_reference.equals(date)){
                         generated_reference = String.valueOf(ref + 1);
                     } else {
-                        generated_reference = date + "0";
+                        generated_reference = date.concat("0");
                     }
 
                 }
@@ -263,16 +261,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     private void send_now(){
 
-
         String url = "https://zaldivarservices.com/android_new/customer_app/send_order.php";
-
-        SharedPreferences gs = getSharedPreferences("this_preferences", MODE_PRIVATE);
-        String usern = gs.getString("user", "");
-
 
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -296,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("user", usern);
+                params.put("user", usernameString);
                 params.put("quantity", amount.getText().toString());
                 params.put("reference", generated_reference);
 
