@@ -1,12 +1,15 @@
 package com.zaldivar.tab;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
@@ -36,6 +39,7 @@ public class Pending extends Fragment {
         return rootView;
     }
 
+
     private void fetch_data() {
         LinearLayoutCompat container = rootView.findViewById(R.id.pending_container);
 
@@ -64,14 +68,23 @@ public class Pending extends Fragment {
 
                         View newView = LayoutInflater.from(context).inflate(R.layout.info_pending, container, false);
 
-                        TextView reference_number, order_date, quantity;
+                        TextView reference_number, order_date, quantity, cancel_order;
                         reference_number = newView.findViewById(R.id.reference);
                         order_date = newView.findViewById(R.id.date);
                         quantity = newView.findViewById(R.id.quantity);
+                        cancel_order = newView.findViewById(R.id.cancel_it);
+
 
                         reference_number.setText(data[0]);
                         order_date.setText(data[1]);
                         quantity.setText(data[2]);
+
+                        cancel_order.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                pop_it(data[0]);
+                            }
+                        });
 
                         container.addView(newView);
                     }
@@ -97,6 +110,82 @@ public class Pending extends Fragment {
             }
         };
         queue.add(sr);
+    }
+
+    private void pop_it(String reference){
+
+        Dialog confirmation =  new Dialog(context);
+
+        confirmation.setContentView(R.layout.confirm_order_dialog);
+        confirmation.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        confirmation.setCancelable(false);
+        confirmation.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+        Button yes = confirmation.findViewById(R.id.yes);
+        Button no = confirmation.findViewById(R.id.no);
+        TextView question =  confirmation.findViewById(R.id.question);
+
+        question.setText("Are you sure you want to cancel this item?");
+
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                cancel_it(reference, confirmation);
+
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmation.dismiss();
+
+            }
+        });
+
+        confirmation.show();
+
+    }
+
+    private void cancel_it(String reference, Dialog confirmation ){
+
+        String url = "https://zaldivarservices.com/android_new/customer_app/pending_api/update_it.php";
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                if (response.equals("Changed")){
+                    confirmation.dismiss();
+                    Toast.makeText(context, "Item has been successfully cancelled.", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("reference", reference);
+                return params;
+            }
+        };
+        queue.add(sr);
+
+
+
+
+
+
+
     }
 
     @Override

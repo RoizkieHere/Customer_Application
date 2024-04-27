@@ -278,6 +278,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     /* private void fetch_data(){
 
         String url = "https://zaldivarservices.com/android_new/customer_app/information.php";
