@@ -48,10 +48,14 @@
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:text="To be processed"
-            android:textSize="12sp"
+            android:id="@+id/cancel_it"
+            android:clickable="true"
+            android:text="Cancel this order"
+            android:textColor="@color/red"
+            android:textSize="13sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:focusable="true" />
 
     </LinearLayout>
 
