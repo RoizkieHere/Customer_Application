@@ -2,6 +2,7 @@ package com.zaldivar.tab;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -52,25 +53,32 @@ public class Cancelled extends Fragment {
             @Override
             public void onResponse(String response) {
 
-                if (!response.isEmpty()) {
+                if(!response.isEmpty()){
 
                     String[] row = response.split("<br>");
 
                     for (String column : row) {
                         String[] data = column.split(";");
+
                         View newView = LayoutInflater.from(context).inflate(R.layout.info_cancelled, container, false);
 
-                        TextView reference_number, order_date, quantity, cancel_date;
-                        reference_number = newView.findViewById(R.id.reference_number);
-                        order_date = newView.findViewById(R.id.order_date);
+                        TextView ref_number, date, quantity, status;
+                        ref_number = newView.findViewById(R.id.reference);
+                        date = newView.findViewById(R.id.date);
                         quantity = newView.findViewById(R.id.quantity);
-                        cancel_date = newView.findViewById(R.id. cancel_date);
+                        status = newView.findViewById(R.id.status);
 
-                        reference_number.setText(data[0]);
-                        order_date.setText(data[1]);
+                        ref_number.setText(data[0]);
+                        date.setText(data[1]);
                         quantity.setText(data[2]);
-                        cancel_date.setText(data[3]);
 
+                        status.setText(data[3]);
+
+                        if (data[3].equals("Cancelled")){
+                            status.setTextColor(Color.parseColor("#F0923848"));
+                        } else {
+                            status.setTextColor(Color.parseColor("#F0958504"));
+                        }
 
                         container.addView(newView);
                     }

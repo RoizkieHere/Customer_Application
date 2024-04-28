@@ -42,7 +42,6 @@ public class Completed extends Fragment {
     private void fetch_data() {
         LinearLayoutCompat container = rootView.findViewById(R.id.completed_container);
 
-
         SharedPreferences get_username = requireContext().getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
         String user = get_username.getString("user", "");
 
@@ -62,7 +61,7 @@ public class Completed extends Fragment {
 
                         TextView ref_number, arrival_date, quantity, price;
                         ref_number = newView.findViewById(R.id.reference);
-                        arrival_date = newView.findViewById(R.id.date);
+                        arrival_date = newView.findViewById(R.id.date_arrived);
                         quantity = newView.findViewById(R.id.quantity);
                         price = newView.findViewById(R.id.price);
 

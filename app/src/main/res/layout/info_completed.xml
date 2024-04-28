@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/date"
+                android:id="@+id/date_arrived"
                 android:textColor="@color/gray2"
                 android:text="April 22, 2024"
                 android:textSize="11sp"
