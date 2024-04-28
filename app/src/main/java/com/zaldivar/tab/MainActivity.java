@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,6 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
     Dialog confirmation;
 
+
+    private static final int REFRESH_INTERVAL = 5000; // 5 seconds
+
+    private final Handler mHandler = new Handler();
+    private final Runnable mRefreshRunnable = new Runnable() {
+        @Override
+        public void run() {
+            fetch_data(); // Refresh data
+            mHandler.postDelayed(this, REFRESH_INTERVAL); // Schedule next refresh
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +76,15 @@ public class MainActivity extends AppCompatActivity {
             Intent supplier = new Intent(MainActivity.this, Login_Activity.class);
             startActivity(supplier);
         }
+
+        // Start auto-refresh when activity is created
+        mHandler.postDelayed(mRefreshRunnable, REFRESH_INTERVAL);
+
+        email_address = sharedPreferences.getString("email", "");
+        usernameString = sharedPreferences.getString("user", "");
+        String name = sharedPreferences.getString("name", "");
+
+        fetch_data();
 
 
         amount = findViewById(R.id.amount);
@@ -123,10 +145,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        email_address = sharedPreferences.getString("email", "");
-        usernameString = sharedPreferences.getString("user", "");
-        String name = sharedPreferences.getString("name", "");
 
         //Dashboard:
         TextView username_txt = findViewById(R.id.username);
@@ -279,9 +297,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Stop auto-refresh when activity is destroyed
+        mHandler.removeCallbacks(mRefreshRunnable);
+    }
 
-
-    /* private void fetch_data(){
+    private void fetch_data(){
 
         String url = "https://zaldivarservices.com/android_new/customer_app/information.php";
 
@@ -289,6 +312,20 @@ public class MainActivity extends AppCompatActivity {
         StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
+                TextView pending_dynamic, transit_dynamic, cancelled_dynamic, completed_dynamic;
+                pending_dynamic = findViewById(R.id.pending_dynamic);
+                transit_dynamic = findViewById(R.id.transit_dynamic);
+                cancelled_dynamic = findViewById(R.id.cancelled_dynamic);
+                completed_dynamic = findViewById(R.id.completed_dynamic);
+
+                String[] dynamic_info = response.split(";");
+
+                pending_dynamic.setText(dynamic_info[0]);
+                transit_dynamic.setText(dynamic_info[1]);
+                completed_dynamic.setText(dynamic_info[3]);
+                cancelled_dynamic.setText(dynamic_info[2]);
+
 
             }
         }, new Response.ErrorListener() {
@@ -306,6 +343,6 @@ public class MainActivity extends AppCompatActivity {
         };
         queue.add(sr);
 
-    } */
+    }
 
 }
