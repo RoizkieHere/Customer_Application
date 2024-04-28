@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Request;
@@ -68,6 +69,17 @@ public class MainActivity extends AppCompatActivity {
         Button send_order = findViewById(R.id.send_order);
 
         confirmation =  new Dialog(MainActivity.this);
+
+
+        SwipeRefreshLayout sw = findViewById(R.id.refreshLayout);
+        sw.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                sw.setRefreshing(false);
+
+            }
+        });
 
 
         send_order.setOnClickListener(new View.OnClickListener() {
