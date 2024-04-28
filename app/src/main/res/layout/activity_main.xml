@@ -1,196 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--Swipe Refresh Layout -->
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:id="@+id/refreshLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/main"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context=".MainActivity">
 
 
-        <!--The Header (Start)-->
+    <!--The Header (Start)-->
 
-            <TableLayout
+        <TableLayout
 
-                android:stretchColumns="1"
-                android:layout_margin="10dp"
+            android:stretchColumns="1"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:src="@drawable/totoo"
+                    android:layout_width="60dp"
+                    android:layout_height="65dp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:textColor="#7C7C7C"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ZALDIVAR'S COMPRADA"
+                    android:textAlignment="center"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlCompat" />
+
+                <ImageView
+                    android:id="@+id/settings"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icons8_settings_500" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <!--The Header (End)-->
+
+        <!--The Dashboard Card (Start)-->
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:padding="1.5dp"
+                android:src="@drawable/baseline_account_circle_24"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:padding="10dp"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TableRow
-                    android:gravity="center">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:src="@drawable/totoo"
-                        android:layout_width="60dp"
-                        android:layout_height="65dp"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:textColor="#7C7C7C"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ZALDIVAR'S COMPRADA"
-                        android:textAlignment="center"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        tools:ignore="RtlCompat" />
-
-                    <ImageView
-                        android:id="@+id/settings"
-                        android:layout_width="37dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/icons8_settings_500" />
-
-                </TableRow>
-
-            </TableLayout>
-
-            <!--The Header (End)-->
-
-            <!--The Dashboard Card (Start)-->
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:background="@drawable/border"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:padding="1.5dp"
-                    android:src="@drawable/baseline_account_circle_24"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"/>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:padding="10dp"
-                    android:orientation="vertical"
+                <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:text="Roi Abrera"
-                            android:id="@+id/username"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="25sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/txt"/>
-
-                    </HorizontalScrollView>
-
-
-
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/email_address"
-                        android:text="@string/roiabrera14_gmail_com"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:text="Roi Abrera"
+                        android:id="@+id/username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/txt"/>
+
+                </HorizontalScrollView>
+
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/email_address"
+                    android:text="@string/roiabrera14_gmail_com"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:orientation="vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:orientation="vertical"
-                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/pending_dynamic"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textAlignment="center"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:id="@+id/transit_dynamic"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textAlignment="center"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:id="@+id/completed_dynamic"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textAlignment="center"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:id="@+id/cancelled_dynamic"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textAlignment="center"
+                            android:textSize="25sp" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                        <TextView
+                            android:textColor="@color/txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Pending"
+                            android:textAlignment="center"
+                            android:textSize="10sp"/>
 
-                            <TextView
-                                android:id="@+id/pending_dynamic"
-                                android:layout_weight="1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="3"
-                                android:textAlignment="center"
-                                android:textSize="25sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="On Delivery"
+                            android:textAlignment="center"
+                            android:textColor="@color/txt"
+                            android:textSize="10sp" />
 
-                            <TextView
-                                android:id="@+id/transit_dynamic"
-                                android:layout_weight="1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="3"
-                                android:textAlignment="center"
-                                android:textSize="25sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/txt"
+                            android:layout_weight="1"
+                            android:text="Completed"
+                            android:textAlignment="center"
+                            android:textSize="10sp" />
 
-                            <TextView
-                                android:id="@+id/completed_dynamic"
-                                android:layout_weight="1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="3"
-                                android:textAlignment="center"
-                                android:textSize="25sp" />
-
-                            <TextView
-                                android:id="@+id/cancelled_dynamic"
-                                android:layout_weight="1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="3"
-                                android:textAlignment="center"
-                                android:textSize="25sp" />
-
-
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:textColor="@color/txt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Pending"
-                                android:textAlignment="center"
-                                android:textSize="10sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="On Delivery"
-                                android:textAlignment="center"
-                                android:textColor="@color/txt"
-                                android:textSize="10sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/txt"
-                                android:layout_weight="1"
-                                android:text="Completed"
-                                android:textAlignment="center"
-                                android:textSize="10sp" />
-
-                            <TextView
-                                android:textColor="@color/txt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Cancelled"
-                                android:textAlignment="center"
-                                android:textSize="10sp" />
+                        <TextView
+                            android:textColor="@color/txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Cancelled"
+                            android:textAlignment="center"
+                            android:textSize="10sp" />
 
 
 
@@ -198,11 +192,6 @@
 
 
 
-
-
-
-
-                        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
@@ -210,65 +199,64 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
+
+
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <!--The Dashboard Card (End)-->
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--The Dashboard Card (End)-->
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:background="@drawable/border_new"
+            android:padding="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:textSize="15sp"
+                android:text="Enter your desired amount of copra"
+                android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:background="@drawable/border_new"
-                android:padding="20dp"
-                android:orientation="vertical"
+                android:paddingTop="0dp"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/amount"
+                    android:layout_weight="1"
+                    android:hint="Amount in ton"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    android:textSize="15sp"
-                    android:text="Enter your desired amount of copra"
-                    android:layout_height="wrap_content"/>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:paddingTop="0dp"
-                    android:gravity="center_vertical"
+                    android:textColorHint="@color/white"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="0dp"
+                    android:textSize="16sp"
+                    android:inputType="numberDecimal"
+                    android:layout_marginRight="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="50dp"/>
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/amount"
-                        android:layout_weight="1"
-                        android:hint="Amount in ton"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/white"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="0dp"
-                        android:textSize="16sp"
-                        android:inputType="numberDecimal"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"/>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/send_order"
-                        android:elevation="20dp"
-                        android:layout_weight="1"
-                        android:textAllCaps="false"
-                        android:background="@drawable/white_button"
-                        android:text="Send Order"
-                        android:textSize="16sp"
-                        android:textColor="@color/txt"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"/>
-
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/send_order"
+                    android:elevation="20dp"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:background="@drawable/white_button"
+                    android:text="Send Order"
+                    android:textSize="16sp"
+                    android:textColor="@color/txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -277,63 +265,58 @@
 
 
 
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tablayout"
-                app:tabSelectedTextColor="@color/tapped_text"
-                app:tabIndicatorColor="@color/tapped_text"
-                app:tabTextColor="@color/txt"
-                android:layout_width="match_parent"
+
+
+
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout"
+            app:tabSelectedTextColor="@color/tapped_text"
+            app:tabIndicatorColor="@color/tapped_text"
+            app:tabTextColor="@color/txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabMode="scrollable">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:tabGravity="fill"
-                app:tabIndicatorAnimationMode="elastic"
-                app:tabMode="scrollable">
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pending" />
+                android:text="@string/pending" />
 
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/on_delivery" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/on_delivery" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/completed" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/completed" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cancelled" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelled" />
 
 
 
-            </com.google.android.material.tabs.TabLayout>
+        </com.google.android.material.tabs.TabLayout>
 
 
 
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
 
 
-
-
-            </androidx.viewpager.widget.ViewPager>
-
-
-
-
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

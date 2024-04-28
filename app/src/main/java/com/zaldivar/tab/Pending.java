@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,10 +75,26 @@ public class Pending extends Fragment {
                         quantity = newView.findViewById(R.id.quantity);
                         cancel_order = newView.findViewById(R.id.cancel_it);
 
-
                         reference_number.setText(data[0]);
                         order_date.setText(data[1]);
-                        quantity.setText(data[2]);
+
+                        String[] quantity_split = data[2].split("\\.");
+                        DecimalFormat df = new DecimalFormat("#,###");
+                        DecimalFormat df_1 = new DecimalFormat("#,###.00");
+
+                        if(quantity_split[1].equals("00")){
+                            if (Integer.parseInt(quantity_split[0]) > 1){
+                                quantity.setText(df.format(quantity_split[0]).concat(" Tons"));
+                            } else {
+                                quantity.setText(df.format(quantity_split[0]).concat(" Ton"));
+                            }
+                        } else {
+                            if (Integer.parseInt(quantity_split[1]) > 0){
+                                quantity.setText(df_1.format(quantity_split[0]).concat(" Tons"));
+                            } else {
+                                quantity.setText(df_1.format(quantity_split[0]).concat(" Ton"));
+                            }
+                        }
 
                         cancel_order.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -160,6 +177,7 @@ public class Pending extends Fragment {
 
                 if (response.equals("Changed")){
                     confirmation.dismiss();
+                    fetch_data();
                     Toast.makeText(context, "Item has been successfully cancelled.", Toast.LENGTH_SHORT).show();
                 }
 

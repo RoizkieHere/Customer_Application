@@ -71,17 +71,6 @@ public class MainActivity extends AppCompatActivity {
         confirmation =  new Dialog(MainActivity.this);
 
 
-        SwipeRefreshLayout sw = findViewById(R.id.refreshLayout);
-        sw.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                sw.setRefreshing(false);
-
-            }
-        });
-
-
         send_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
