@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,7 +71,26 @@ public class Transit extends Fragment {
 
                         reference_number.setText(data[0]);
                         order_date.setText(data[1]);
-                        quantity.setText(data[2]);
+
+                        String[] quantity_split = data[2].split("\\.");
+                        DecimalFormat df = new DecimalFormat("#,###");
+                        DecimalFormat df_1 = new DecimalFormat("#,###.00");
+
+                        if(quantity_split[1].equals("00")){
+                            if (Integer.parseInt(quantity_split[0]) > 1){
+                                quantity.setText(df.format(quantity_split[0]).concat(" Tons"));
+                            } else {
+                                quantity.setText(df.format(quantity_split[0]).concat(" Ton"));
+                            }
+                        } else {
+                            if (Integer.parseInt(quantity_split[1]) > 0){
+                                quantity.setText(df_1.format(quantity_split[0]).concat(" Tons"));
+                            } else {
+                                quantity.setText(df_1.format(quantity_split[0]).concat(" Ton"));
+                            }
+                        }
+
+
                         status.setText(data[3]);
 
                         if (data[3].equals("Scheduled")){

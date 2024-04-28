@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,8 +68,42 @@ public class Completed extends Fragment {
 
                         ref_number.setText(data[0]);
                         arrival_date.setText(data[3]);
-                        quantity.setText(data[1]);
-                        price.setText(data[2]);
+
+                        String[] quantity_split = data[1].split("\\.");
+                        DecimalFormat df = new DecimalFormat("#,###");
+                        DecimalFormat df_1 = new DecimalFormat("#,###.00");
+
+                        if(quantity_split[1].equals("00")){
+                            if (Integer.parseInt(quantity_split[0]) > 1){
+                                quantity.setText(df.format(quantity_split[0]).concat(" Tons"));
+                            } else {
+                                quantity.setText(df.format(quantity_split[0]).concat(" Ton"));
+                            }
+                        } else {
+                            if (Integer.parseInt(quantity_split[1]) > 0){
+                                quantity.setText(df_1.format(quantity_split[0]).concat(" Tons"));
+                            } else {
+                                quantity.setText(df_1.format(quantity_split[0]).concat(" Ton"));
+                            }
+                        }
+
+                        String[] price_split = data[2].split("\\.");
+                        DecimalFormat price_form = new DecimalFormat("₱ ###,###");
+                        DecimalFormat price_form1 = new DecimalFormat("₱ ###,###.00");
+
+                        if(price_split[2].equals("00")){
+                            if (Integer.parseInt(price_split[0]) > 1){
+                                quantity.setText(price_form.format(price_split[0]));
+                            } else {
+                                quantity.setText(price_form.format(price_split[0]));
+                            }
+                        } else {
+                            if (Integer.parseInt(price_split[1]) > 0){
+                                quantity.setText(price_form1.format(price_split[0]));
+                            } else {
+                                quantity.setText(price_form1.format(price_split[0]));
+                            }
+                        }
 
                         container.addView(newView);
                     }
