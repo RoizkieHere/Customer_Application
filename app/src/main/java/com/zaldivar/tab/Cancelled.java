@@ -56,6 +56,9 @@ public class Cancelled extends Fragment {
 
                 if(!response.isEmpty()){
 
+                    container.setVisibility(View.VISIBLE);
+                    rootView.findViewById(R.id.no_cancelled).setVisibility(View.GONE);
+
                     String[] row = response.split("<br>");
 
                     for (String column : row) {
@@ -101,6 +104,9 @@ public class Cancelled extends Fragment {
 
                         container.addView(newView);
                     }
+                } else {
+                    container.setVisibility(View.GONE);
+                    rootView.findViewById(R.id.no_cancelled).setVisibility(View.VISIBLE);
                 }
             }
         }, new Response.ErrorListener() {

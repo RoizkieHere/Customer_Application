@@ -235,11 +235,6 @@ public class Pending extends Fragment {
         queue.add(sr);
 
 
-
-
-
-
-
     }
 
     @Override

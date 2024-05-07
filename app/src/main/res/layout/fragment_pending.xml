@@ -30,7 +30,7 @@
         android:id="@+id/no_pending"
         android:padding="50dp"
         android:textSize="30sp"
-        android:text="No pending order as of the moment!"
+        android:text="No list for now!"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
