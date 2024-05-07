@@ -2,8 +2,10 @@ package com.zaldivar.tab;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +30,13 @@ import java.util.Map;
 public class Pending extends Fragment {
 
     private Context context;
-    private View rootView;
+    private View rootView, newView;
+
+    private LinearLayoutCompat container;
+
+    private SharedPreferences get_username;
+
+    private static final int REFRESH_INTERVAL = 1000; // 5 seconds
 
 
     @Override
@@ -36,19 +44,45 @@ public class Pending extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_pending, container, false);
         context = getContext();
+
+        get_username = requireContext().getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
+
+        // Start auto-refresh when activity is created
+        mHandler.postDelayed(mRefreshRunnable, REFRESH_INTERVAL);
+
         fetch_data();
         return rootView;
     }
 
+    private final Handler mHandler = new Handler();
+    private final Runnable mRefreshRunnable = new Runnable() {
+        @Override
+        public void run() {
+
+            if(get_username.contains("pending")){
+               container.removeAllViews();
+               fetch_data();
+
+                SharedPreferences.Editor editor = get_username.edit();
+
+                editor.remove("pending");
+                editor.apply();
+            }
+
+
+            mHandler.postDelayed(this, REFRESH_INTERVAL); // Schedule next refresh
+        }
+    };
+
 
     private void fetch_data() {
-        LinearLayoutCompat container = rootView.findViewById(R.id.pending_container);
+        container = rootView.findViewById(R.id.pending_container);
 
         String url = "https://zaldivarservices.com/android_new/customer_app/pending_api/pending.php";
 
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        SharedPreferences get_username = requireContext().getSharedPreferences("this_preferences", Context.MODE_PRIVATE);
+
         String user = get_username.getString("user", "");
 
 
@@ -67,7 +101,7 @@ public class Pending extends Fragment {
                     for (String column : row) {
                         String[] data = column.split(";");
 
-                        View newView = LayoutInflater.from(context).inflate(R.layout.info_pending, container, false);
+                        newView = LayoutInflater.from(context).inflate(R.layout.info_pending, container, false);
 
                         TextView reference_number, order_date, quantity, cancel_order;
                         reference_number = newView.findViewById(R.id.reference);
@@ -79,20 +113,21 @@ public class Pending extends Fragment {
                         order_date.setText(data[1]);
 
                         String[] quantity_split = data[2].split("\\.");
+                        double decimal_con = Double.parseDouble(data[2]);
                         DecimalFormat df = new DecimalFormat("#,###");
                         DecimalFormat df_1 = new DecimalFormat("#,###.00");
 
                         if(quantity_split[1].equals("00")){
                             if (Integer.parseInt(quantity_split[0]) > 1){
-                                quantity.setText(df.format(quantity_split[0]).concat(" Tons"));
+                                quantity.setText(df.format(decimal_con).concat(" Tons"));
                             } else {
-                                quantity.setText(df.format(quantity_split[0]).concat(" Ton"));
+                                quantity.setText(df.format(decimal_con).concat(" Ton"));
                             }
                         } else {
                             if (Integer.parseInt(quantity_split[1]) > 0){
-                                quantity.setText(df_1.format(quantity_split[0]).concat(" Tons"));
+                                quantity.setText(df_1.format(decimal_con).concat(" Tons"));
                             } else {
-                                quantity.setText(df_1.format(quantity_split[0]).concat(" Ton"));
+                                quantity.setText(df_1.format(decimal_con).concat(" Ton"));
                             }
                         }
 
@@ -176,9 +211,10 @@ public class Pending extends Fragment {
             public void onResponse(String response) {
 
                 if (response.equals("Changed")){
-                    confirmation.dismiss();
-                    fetch_data();
                     Toast.makeText(context, "Item has been successfully cancelled.", Toast.LENGTH_SHORT).show();
+                    confirmation.dismiss();
+                    container.removeAllViews();
+                    fetch_data();
                 }
 
 

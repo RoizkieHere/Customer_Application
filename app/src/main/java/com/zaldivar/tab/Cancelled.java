@@ -73,20 +73,21 @@ public class Cancelled extends Fragment {
                         date.setText(data[1]);
 
                         String[] quantity_split = data[2].split("\\.");
+                        double decimal_con = Double.parseDouble(data[2]);
                         DecimalFormat df = new DecimalFormat("#,###");
                         DecimalFormat df_1 = new DecimalFormat("#,###.00");
 
                         if(quantity_split[1].equals("00")){
                             if (Integer.parseInt(quantity_split[0]) > 1){
-                                quantity.setText(df.format(quantity_split[0]).concat(" Tons"));
+                                quantity.setText(df.format(decimal_con).concat(" Tons"));
                             } else {
-                                quantity.setText(df.format(quantity_split[0]).concat(" Ton"));
+                                quantity.setText(df.format(decimal_con).concat(" Ton"));
                             }
                         } else {
                             if (Integer.parseInt(quantity_split[1]) > 0){
-                                quantity.setText(df_1.format(quantity_split[0]).concat(" Tons"));
+                                quantity.setText(df_1.format(decimal_con).concat(" Tons"));
                             } else {
-                                quantity.setText(df_1.format(quantity_split[0]).concat(" Ton"));
+                                quantity.setText(df_1.format(decimal_con).concat(" Ton"));
                             }
                         }
 

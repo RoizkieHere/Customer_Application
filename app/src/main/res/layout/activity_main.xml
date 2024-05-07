@@ -65,8 +65,8 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:padding="1.5dp"
                 android:src="@drawable/baseline_account_circle_24"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
+                android:layout_width="85dp"
+                android:layout_height="85dp"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:padding="10dp"
@@ -105,41 +105,41 @@
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/pending_dynamic"
+                            android:id="@+id/pending1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="3"
+                            android:text="2"
                             android:textAlignment="center"
                             android:textSize="25sp" />
 
                         <TextView
-                            android:id="@+id/transit_dynamic"
+                            android:id="@+id/transit1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="3"
+                            android:text="0"
                             android:textAlignment="center"
                             android:textSize="25sp" />
 
                         <TextView
-                            android:id="@+id/completed_dynamic"
+                            android:id="@+id/completed1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="3"
+                            android:text="17"
                             android:textAlignment="center"
                             android:textSize="25sp" />
 
                         <TextView
-                            android:id="@+id/cancelled_dynamic"
+                            android:id="@+id/cancelled1"
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="3"
+                            android:text="1"
                             android:textAlignment="center"
                             android:textSize="25sp" />
 
@@ -151,6 +151,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+
                             android:textColor="@color/txt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -185,15 +186,6 @@
                             android:text="Cancelled"
                             android:textAlignment="center"
                             android:textSize="10sp" />
-
-
-
-
-
-
-
-
-
 
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
